@@ -7,11 +7,11 @@ import android.graphics.drawable.Drawable;
 public class Label {
 	
 	private String name;
-	private Drawable icon;
+	private String icon;
 	private ArrayList<Artist> artistsList;
 	
 	
-	public Label(String name, Drawable icon, ArrayList<Artist> artistsList) {
+	public Label(String name, String icon, ArrayList<Artist> artistsList) {
 		super();
 		this.name = name;
 		this.icon = icon;
@@ -27,11 +27,11 @@ public class Label {
 		this.name = name;
 	}
 
-	public Drawable getIcon() {
+	public String getIcon() {
 		return icon;
 	}
 
-	public void setIcon(Drawable icon) {
+	public void setIcon(String icon) {
 		this.icon = icon;
 	}
 

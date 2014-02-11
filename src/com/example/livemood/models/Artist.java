@@ -7,8 +7,8 @@ import android.graphics.drawable.Drawable;
 public class Artist {
 	
 	private String name;
-	private Drawable picture;
-	private Drawable coverPicture;
+	private String picture;
+	private String coverPicture;
 	private Label label;
 	private ArrayList<Dig> digsList;
 	private ArrayList<Concert> concertsList;
@@ -17,7 +17,7 @@ public class Artist {
 	
 	
 	
-	public Artist(String name, Drawable picture, Drawable coverPicture,
+	public Artist(String name, String picture, String coverPicture,
 			Label label, ArrayList<Dig> digsList,
 			ArrayList<Concert> concertsList, ArrayList<Mood> moodsList,
 			ArrayList<ReferenceArtist> referencesList) {
@@ -40,19 +40,19 @@ public class Artist {
 		this.name = name;
 	}
 
-	public Drawable getPicture() {
+	public String getPicture() {
 		return picture;
 	}
 
-	public void setPicture(Drawable picture) {
+	public String getCoverPicture() {
+		return coverPicture;
+	}
+	
+	public void setPicture(String picture) {
 		this.picture = picture;
 	}
 
-	public Drawable getCoverPicture() {
-		return coverPicture;
-	}
-
-	public void setCoverPicture(Drawable coverPicture) {
+	public void setCoverPicture(String coverPicture) {
 		this.coverPicture = coverPicture;
 	}
 
