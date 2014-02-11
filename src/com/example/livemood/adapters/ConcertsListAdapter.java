@@ -52,7 +52,7 @@ public class ConcertsListAdapter extends BaseAdapter {
 		if (convertView == null) {
 			holder = new ViewHolder();
 
-			convertView = inflater.inflate(R.layout.concerts_list, null);
+			convertView = inflater.inflate(R.layout.concerts_list_item, null);
 			holder.name = (TextView) convertView.findViewById(R.id.concertName);
 
 			convertView.setTag(holder);
