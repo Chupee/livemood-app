@@ -4,7 +4,11 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.livemood.adapters.ConcertsListAdapter;
@@ -18,6 +22,11 @@ import com.example.livemood.models.ReferenceArtist;
 
 public class AgendaActivity extends Activity {
 	
+	/* Drawer Navigation */
+	private DrawerLayout drawerLayout;
+	private ListView drawerList;
+	
+	/* Concerts list */
 	private ArrayList<Concert> concertsList;
 	private ListView lvListe;
 	private ConcertsListAdapter adapter;
@@ -51,6 +60,17 @@ public class AgendaActivity extends Activity {
 		birdyHunt.getConcertsList().add(concert1);
 		bataclan.getConcertsList().add(concert1);
 		
+		//
+		// Drawer navigation
+		//
+		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+		drawerList = (ListView) findViewById(R.id.left_drawer);
+		String[] drawerItems = getResources().getStringArray(R.array.items);
+		// Set the adapter for the list view
+        drawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, R.id.itemName, drawerItems));
+        // Set the list's click listener
+        //drawerList.setOnItemClickListener(new DrawerItemClickListener());
+        
 		//
 		// List
 		//

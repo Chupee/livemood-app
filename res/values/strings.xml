@@ -4,5 +4,13 @@
     <string name="app_name">Livemood</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    
+    <string-array name="items">
+        <item>Michel Constant</item>
+        <item>Agenda</item>
+        <item>Mes concerts</item>
+        <item>Artistes en vogue</item>
+        <item>Artistes recommandés</item>
+    </string-array>
 
 </resources>
