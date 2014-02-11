@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ListView;
 
+import com.example.livemood.adapters.ConcertsListAdapter;
 import com.example.livemood.models.Artist;
 import com.example.livemood.models.Concert;
 import com.example.livemood.models.Dig;
@@ -19,13 +20,16 @@ public class AgendaActivity extends Activity {
 	
 	private ArrayList<Concert> concertsList;
 	private ListView lvListe;
+	private ConcertsListAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_agenda);
 
+		//
 		// Hard data (me gusta)
+		//
 		Label labello = new Label("Labello", "labello.png", new ArrayList<Artist>());
 		
 		Mood sexy = new Mood("Sexy", new ArrayList<Artist>());
@@ -47,9 +51,18 @@ public class AgendaActivity extends Activity {
 		birdyHunt.getConcertsList().add(concert1);
 		bataclan.getConcertsList().add(concert1);
 		
+		//
 		// List
+		//
 		concertsList = new ArrayList<Concert>();
 		concertsList.add(concert1);
+		concertsList.add(concert1);
+		concertsList.add(concert1);
+		concertsList.add(concert1);
+		
+		lvListe = (ListView)findViewById(R.id.concertsList);
+		adapter = new ConcertsListAdapter(getApplicationContext(), concertsList);
+	    lvListe.setAdapter(adapter);
 		
 	}
 

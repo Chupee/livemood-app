@@ -1,70 +1,69 @@
 package com.example.livemood.adapters;
 
-import android.database.DataSetObserver;
+import java.util.List;
+
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
 
-public class ConcertsListAdapter implements Adapter {
+import com.example.livemood.R;
+import com.example.livemood.models.Concert;
 
-	@Override
-	public int getCount() {
-		// TODO Auto-generated method stub
-		return 0;
+public class ConcertsListAdapter extends BaseAdapter {
+
+	private List<Concert> concertsList;
+	LayoutInflater inflater;
+	
+	public ConcertsListAdapter(Context context, List<Concert> list){
+		this.concertsList = list;
+		this.inflater = LayoutInflater.from(context);
 	}
-
-	@Override
+	
+	public int getCount(){
+		return concertsList.size();
+	}
+	
 	public Object getItem(int position) {
-		// TODO Auto-generated method stub
-		return null;
+		return concertsList.get(position);
 	}
-
-	@Override
+	
 	public long getItemId(int position) {
-		// TODO Auto-generated method stub
-		return 0;
+		return position;
 	}
 
-	@Override
-	public int getItemViewType(int position) {
-		// TODO Auto-generated method stub
-		return 0;
+	private class ViewHolder {
+		public TextView name;
 	}
 
-	@Override
+	public void clear() {
+		concertsList.clear();
+	}
+	
+	public void setList(List<Concert> list) {
+		concertsList = list;
+	}
+	
 	public View getView(int position, View convertView, ViewGroup parent) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		ViewHolder holder;
 
-	@Override
-	public int getViewTypeCount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+		if (convertView == null) {
+			holder = new ViewHolder();
 
-	@Override
-	public boolean hasStableIds() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+			convertView = inflater.inflate(R.layout.concerts_list, null);
+			holder.name = (TextView) convertView.findViewById(R.id.concertName);
 
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+			convertView.setTag(holder);
+		} else {
+			holder = (ViewHolder) convertView.getTag();
+		}
 
-	@Override
-	public void registerDataSetObserver(DataSetObserver observer) {
-		// TODO Auto-generated method stub
+		/* Address name */
+		holder.name.setText(concertsList.get(position).getArtist().getName());
 		
-	}
-
-	@Override
-	public void unregisterDataSetObserver(DataSetObserver observer) {
-		// TODO Auto-generated method stub
-		
+		return convertView;
 	}
 
 }

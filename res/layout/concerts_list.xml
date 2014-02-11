@@ -8,8 +8,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".AgendaActivity" >
     
-    <ListView
-         android:id="@+id/concertsList"
+    <TextView
+         android:id="@+id/concertName"
          android:layout_width="match_parent"
          android:layout_height="fill_parent"/>
 
