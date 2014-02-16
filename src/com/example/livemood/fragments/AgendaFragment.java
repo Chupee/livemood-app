@@ -2,12 +2,16 @@ package com.example.livemood.fragments;
 
 import java.util.ArrayList;
 
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.livemood.R;
 import com.example.livemood.adapters.ConcertsListAdapter;
@@ -68,11 +72,35 @@ public class AgendaFragment extends Fragment {
 	adapter = new ConcertsListAdapter(getActivity().getApplicationContext(), concertsList);
     lvListe.setAdapter(adapter);
     
+    lvListe.setOnItemClickListener(new OnItemClickListener() {
+  	  @Override
+  	  public void onItemClick(AdapterView<?> parent, View view,
+  	    int position, long id) {
+  	    Toast.makeText(getActivity().getApplicationContext(),
+  	      "Click ListItem Number " + position, Toast.LENGTH_LONG)
+  	      .show();
+  	    
+  	    // Insert the fragment by replacing any existing fragment
+  	    Fragment fragment = new ConcertDetailsFragment();
+  	    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                       .replace(R.id.content_frame, fragment)
+                       .addToBackStack(fragment.getTag())
+                       .commit();
+
+        // Update the title
+        getActivity().getActionBar().setTitle(("Concert"));
+        
+  	  }
+  	}); 
+    
     return view;
   }
+  
   @Override
   public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);  
   }
+  
 
 }

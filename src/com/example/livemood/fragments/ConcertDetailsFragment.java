@@ -8,13 +8,12 @@ import android.view.ViewGroup;
 
 import com.example.livemood.R;
 
-
-public class MyConcertsFragment extends Fragment {
+public class ConcertDetailsFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
     Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.myconcerts_fragment, null);
-
+    View view = inflater.inflate(R.layout.concert_fragment, null);
+    
     return view;
   }
   @Override

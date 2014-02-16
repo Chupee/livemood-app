@@ -1,13 +1,14 @@
 package com.example.livemood;
 
 import android.app.ActionBar;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,7 +25,7 @@ import com.example.livemood.fragments.RecommandedArtistsFragment;
 
 
 
-public class AgendaActivity extends Activity {
+public class AgendaActivity extends FragmentActivity {
 	
 	/* Drawer Navigation */
 	private final int profilePosition = 			0;
@@ -127,6 +128,19 @@ public class AgendaActivity extends Activity {
 		}
         return super.onOptionsItemSelected(item);
     }
+    
+    @Override
+    public void onBackPressed(){
+    	Log.d("Livemood", "onBackPressed Called");
+        FragmentManager fm = getSupportFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            Log.i("MainActivity", "popping backstack");
+            fm.popBackStack();
+        } else {
+            Log.i("MainActivity", "nothing on backstack, calling super");
+            super.onBackPressed();  
+        }
+    }
 	
 	private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
@@ -160,12 +174,11 @@ public class AgendaActivity extends Activity {
 				break;
 		}
         
-        Bundle args = new Bundle();
-
         // Insert the fragment by replacing any existing fragment
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                        .replace(R.id.content_frame, fragment)
+                       .addToBackStack(fragment.getTag())
                        .commit();
 
         // Highlight the selected item, update the title, and close the drawer
