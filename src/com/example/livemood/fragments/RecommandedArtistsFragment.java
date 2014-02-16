@@ -10,11 +10,19 @@ import com.example.livemood.R;
 
 
 public class RecommandedArtistsFragment extends Fragment {
+	
+	private final String TITLE = "Artistes recommandés";
+	
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
     Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.recommandedartists_fragment, null);
 
+    //
+    // Update action bar
+    //
+    getActivity().getActionBar().setTitle(TITLE);
+    
     return view;
   }
   @Override

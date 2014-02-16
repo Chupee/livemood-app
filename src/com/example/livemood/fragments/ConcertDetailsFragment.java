@@ -9,10 +9,18 @@ import android.view.ViewGroup;
 import com.example.livemood.R;
 
 public class ConcertDetailsFragment extends Fragment {
+	
+	private final String TITLE = "Concert";
+	
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
     Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.concert_fragment, null);
+    
+    //
+    // Update action bar
+    //
+    getActivity().getActionBar().setTitle(TITLE);
     
     return view;
   }

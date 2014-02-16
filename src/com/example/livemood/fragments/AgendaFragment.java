@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.livemood.R;
 import com.example.livemood.adapters.ConcertsListAdapter;
@@ -25,6 +24,8 @@ import com.example.livemood.models.ReferenceArtist;
 
 public class AgendaFragment extends Fragment {
  
+	private final String TITLE = "Agenda";
+	
 	/* Concerts list */
 	private ArrayList<Concert> concertsList;
 	private ListView lvListe;
@@ -34,6 +35,11 @@ public class AgendaFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
     Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.agenda_fragment, null);
+    
+    //
+    // Update action bar
+    //
+    getActivity().getActionBar().setTitle(TITLE);
     
     //
 	// Hard data (me gusta)
@@ -76,9 +82,6 @@ public class AgendaFragment extends Fragment {
   	  @Override
   	  public void onItemClick(AdapterView<?> parent, View view,
   	    int position, long id) {
-  	    Toast.makeText(getActivity().getApplicationContext(),
-  	      "Click ListItem Number " + position, Toast.LENGTH_LONG)
-  	      .show();
   	    
   	    // Insert the fragment by replacing any existing fragment
   	    Fragment fragment = new ConcertDetailsFragment();

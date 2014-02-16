@@ -183,7 +183,6 @@ public class AgendaActivity extends FragmentActivity {
 
         // Highlight the selected item, update the title, and close the drawer
         drawerList.setItemChecked(position, true);
-        getActionBar().setTitle((drawerItems[position]));
         drawerLayout.closeDrawer(drawerList);
     }
 
