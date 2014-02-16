@@ -12,5 +12,9 @@
         <item>Artistes en vogue</item>
         <item>Artistes recommandés</item>
     </string-array>
+    
+    <string name="action_update">Update</string>
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Close Drawer</string>
 
 </resources>
