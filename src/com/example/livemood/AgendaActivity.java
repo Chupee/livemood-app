@@ -1,7 +1,5 @@
 package com.example.livemood;
 
-import java.util.ArrayList;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
@@ -18,15 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.livemood.adapters.ConcertsListAdapter;
-import com.example.livemood.fragments.OpertingSystemFragment;
-import com.example.livemood.models.Artist;
-import com.example.livemood.models.Concert;
-import com.example.livemood.models.Dig;
-import com.example.livemood.models.Label;
-import com.example.livemood.models.Mood;
-import com.example.livemood.models.Place;
-import com.example.livemood.models.ReferenceArtist;
+import com.example.livemood.fragments.AgendaFragment;
 
 public class AgendaActivity extends Activity {
 	
@@ -37,10 +27,7 @@ public class AgendaActivity extends Activity {
 	private ActionBarDrawerToggle drawerToggle;
 	private CharSequence title;
 	
-	/* Concerts list */
-	private ArrayList<Concert> concertsList;
-	private ListView lvListe;
-	private ConcertsListAdapter adapter;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,30 +41,6 @@ public class AgendaActivity extends Activity {
 	    actionBar.setHomeButtonEnabled(true);
 	    title = getActionBar().getTitle();
 	    
-		//
-		// Hard data (me gusta)
-		//
-		Label labello = new Label("Labello", "labello.png", new ArrayList<Artist>());
-		
-		Mood sexy = new Mood("Sexy", new ArrayList<Artist>());
-		Mood chevaleresque = new Mood("chevaleresque", new ArrayList<Artist>());
-		Mood rebelle = new Mood("Rebelle", new ArrayList<Artist>());
-		
-		Artist birdyHunt = new Artist("Birdy Hunt", "birdyhunt.png", "birdyhunt-cover.png", labello, new ArrayList<Dig>(), new ArrayList<Concert>(), new ArrayList<Mood>(), new ArrayList<ReferenceArtist>());
-		birdyHunt.getMoodsList().add(sexy);
-		birdyHunt.getMoodsList().add(rebelle);
-		birdyHunt.getMoodsList().add(chevaleresque);
-		rebelle.getArtistsList().add(birdyHunt);
-		chevaleresque.getArtistsList().add(birdyHunt);
-		sexy.getArtistsList().add(birdyHunt);
-		labello.getArtistsList().add(birdyHunt);
-		
-		Place bataclan = new Place("Bataclan", "28 rue du Swag", new ArrayList<Concert>());
-		
-		Concert concert1 = new Concert(birdyHunt, bataclan, "2013-11-28 20:00:00", "concert1.png");
-		birdyHunt.getConcertsList().add(concert1);
-		bataclan.getConcertsList().add(concert1);
-		
 		//
 		// Drawer navigation
 		//
@@ -112,18 +75,6 @@ public class AgendaActivity extends Activity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
         
-		//
-		// List
-		//
-		concertsList = new ArrayList<Concert>();
-		concertsList.add(concert1);
-		concertsList.add(concert1);
-		concertsList.add(concert1);
-		concertsList.add(concert1);
-		
-		lvListe = (ListView)findViewById(R.id.concertsList);
-		adapter = new ConcertsListAdapter(getApplicationContext(), concertsList);
-	    lvListe.setAdapter(adapter);
 		
 	}
 
@@ -176,10 +127,8 @@ public class AgendaActivity extends Activity {
 	/** Swaps fragments in the main content view */
     private void selectItem(int position) {
         // create a new fragment and specify the planet to show based on position
-        Fragment fragment = new OpertingSystemFragment();
+        Fragment fragment = new AgendaFragment();
         Bundle args = new Bundle();
-        args.putInt(OpertingSystemFragment.ARG_OS, position);
-        fragment.setArguments(args);
 
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getFragmentManager();
