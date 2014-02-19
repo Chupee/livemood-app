@@ -16,5 +16,6 @@
     <string name="action_update">Update</string>
     <string name="drawer_open">Open Drawer</string>
     <string name="drawer_close">Close Drawer</string>
+    <string name="concert_detail">Concert Detail</string>
 
 </resources>
