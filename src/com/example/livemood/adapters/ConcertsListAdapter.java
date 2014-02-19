@@ -43,6 +43,7 @@ public class ConcertsListAdapter extends BaseAdapter {
 		public TextView reviewCount;
 		public TextView hasBook;
 		public ImageView artistImage;
+		public ImageView hasBookIcon;
 	}
 
 	public void clear() {
@@ -67,6 +68,7 @@ public class ConcertsListAdapter extends BaseAdapter {
 			holder.reviewCount = (TextView) concertView.findViewById(R.id.reviewCount);
 			holder.hasBook = (TextView) concertView.findViewById(R.id.hasBook);
 			holder.artistImage = (ImageView) concertView.findViewById(R.id.artistImage);
+			holder.hasBookIcon = (ImageView) concertView.findViewById(R.id.hasBookIcon);
 			
 			concertView.setTag(holder);
 		} else {
@@ -83,6 +85,7 @@ public class ConcertsListAdapter extends BaseAdapter {
 		boolean hasBook = true ; // TODO : get the real state of this field by asking User data
 		if(hasBook) {
 			holder.hasBook.setText(R.string.label_book_yes);
+			holder.hasBookIcon.setImageResource(R.drawable.check);
 		}
 		
 
