@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.livemood.R;
@@ -35,7 +36,13 @@ public class ConcertsListAdapter extends BaseAdapter {
 	}
 
 	private class ViewHolder {
-		public TextView name;
+		public TextView artistName;
+		public TextView labelName;
+		public TextView placeName;
+		public TextView date;
+		public TextView reviewCount;
+		public TextView hasBook;
+		public ImageView artistImage;
 	}
 
 	public void clear() {
@@ -46,24 +53,40 @@ public class ConcertsListAdapter extends BaseAdapter {
 		concertsList = list;
 	}
 	
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(int position, View concertView, ViewGroup parent) {
 		ViewHolder holder;
 
-		if (convertView == null) {
+		if (concertView == null) {
 			holder = new ViewHolder();
 
-			convertView = inflater.inflate(R.layout.concerts_list_item, null);
-			holder.name = (TextView) convertView.findViewById(R.id.concertName);
-
-			convertView.setTag(holder);
+			concertView = inflater.inflate(R.layout.concerts_list_item, null);
+			holder.artistName = (TextView) concertView.findViewById(R.id.concertName);
+			holder.labelName = (TextView) concertView.findViewById(R.id.labelName);
+			holder.placeName = (TextView) concertView.findViewById(R.id.placeName);
+			holder.date = (TextView) concertView.findViewById(R.id.date);
+			holder.reviewCount = (TextView) concertView.findViewById(R.id.reviewCount);
+			holder.hasBook = (TextView) concertView.findViewById(R.id.hasBook);
+			holder.artistImage = (ImageView) concertView.findViewById(R.id.artistImage);
+			
+			concertView.setTag(holder);
 		} else {
-			holder = (ViewHolder) convertView.getTag();
+			holder = (ViewHolder) concertView.getTag();
 		}
 
 		/* Address name */
-		holder.name.setText(concertsList.get(position).getArtist().getName());
+		holder.artistImage.setImageResource(R.drawable.concert1);
+		holder.artistName.setText(concertsList.get(position).getArtist().getName());
+		holder.labelName.setText(concertsList.get(position).getArtist().getLabel().getName());
+		holder.placeName.setText(concertsList.get(position).getPlace().getName());
+		holder.date.setText(concertsList.get(position).getDate());
+		holder.reviewCount.setText("15 chroniques");
+		boolean hasBook = true ; // TODO : get the real state of this field by asking User data
+		if(hasBook) {
+			holder.hasBook.setText(R.string.label_book_yes);
+		}
 		
-		return convertView;
+
+		return concertView;
 	}
 
 }

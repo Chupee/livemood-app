@@ -61,7 +61,7 @@ public class AgendaFragment extends Fragment {
 	
 	Place bataclan = new Place("Bataclan", "28 rue du Swag", new ArrayList<Concert>());
 	
-	Concert concert1 = new Concert(birdyHunt, bataclan, "2013-11-28 20:00:00", "concert1.png");
+	Concert concert1 = new Concert(birdyHunt, bataclan, "2013-11-28", "concert1.png");
 	birdyHunt.getConcertsList().add(concert1);
 	bataclan.getConcertsList().add(concert1);
 	
