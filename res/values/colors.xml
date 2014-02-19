@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="appBackground">#cccccc</color>
+	<color name="secondaryAppBackground">#e6e6e6</color>
+	<color name="navigationText">#ffffff</color>
+	<color name="listItemBackground">#ffffff</color>
+	<color name="listBorderBottom">#b3b3b3</color>
+	<color name="text">#cccccc</color>
+	<color name="coloredText">#f77b1e</color>
+	<color name="tag">#f29b5a</color>
+	<color name="tagText">#ffffff</color>
+	<color name="button">#f77b1e</color>
+	<color name="buttonText">#ffffff</color>
+	<color name="buttonInverse">#ffffff</color>
+	<color name="buttonInverseText">#f77b1e</color>
+	<color name="concertTitleText">#000000</color>
+</resources>
