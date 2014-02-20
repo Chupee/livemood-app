@@ -21,6 +21,10 @@
     <string name="label_chronique">chronique</string>
     <string name="label_chroniques">chroniques</string>
     <string name="label_book_yes">J\'ai réservé</string>
+    <string name="label_goingButton">J\'y vais !</string>
+    
+    
+    
     
     <string name="content_description_artist">Photo de l\'artiste</string>
 
