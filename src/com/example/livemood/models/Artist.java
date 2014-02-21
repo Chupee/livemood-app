@@ -2,8 +2,6 @@ package com.example.livemood.models;
 
 import java.util.ArrayList;
 
-import android.graphics.drawable.Drawable;
-
 public class Artist {
 	
 	private String name;
@@ -12,6 +10,7 @@ public class Artist {
 	private Label label;
 	private ArrayList<Dig> digsList;
 	private ArrayList<Concert> concertsList;
+	private ArrayList<Style> stylesList;
 	private ArrayList<Mood> moodsList;
 	private ArrayList<ReferenceArtist> referencesList;
 	
@@ -19,7 +18,7 @@ public class Artist {
 	
 	public Artist(String name, String picture, String coverPicture,
 			Label label, ArrayList<Dig> digsList,
-			ArrayList<Concert> concertsList, ArrayList<Mood> moodsList,
+			ArrayList<Concert> concertsList, ArrayList<Style> stylesList, ArrayList<Mood> moodsList,
 			ArrayList<ReferenceArtist> referencesList) {
 		super();
 		this.name = name;
@@ -28,6 +27,7 @@ public class Artist {
 		this.label = label;
 		this.digsList = digsList;
 		this.concertsList = concertsList;
+		this.stylesList = stylesList;
 		this.moodsList = moodsList;
 		this.referencesList = referencesList;
 	}
@@ -78,6 +78,14 @@ public class Artist {
 
 	public void setConcertsList(ArrayList<Concert> concertsList) {
 		this.concertsList = concertsList;
+	}
+	
+	public ArrayList<Style> getStylesList() {
+		return stylesList;
+	}
+
+	public void setStylesList(ArrayList<Style> stylesList) {
+		this.stylesList = stylesList;
 	}
 
 	public ArrayList<Mood> getMoodsList() {

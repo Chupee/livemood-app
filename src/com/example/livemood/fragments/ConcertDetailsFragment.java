@@ -4,12 +4,15 @@ import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.livemood.R;
+import com.example.livemood.adapters.TagsListAdapter;
 import com.example.livemood.models.Artist;
 import com.example.livemood.models.Concert;
 import com.example.livemood.models.Dig;
@@ -17,11 +20,16 @@ import com.example.livemood.models.Label;
 import com.example.livemood.models.Mood;
 import com.example.livemood.models.Place;
 import com.example.livemood.models.ReferenceArtist;
+import com.example.livemood.models.Style;
 
 public class ConcertDetailsFragment extends Fragment {
 	
 	private final String TITLE = "Concert";
 	private int concertId;
+	
+	private ArrayList<String> tagNamesList;
+	private ListView lvTagsList;
+	private TagsListAdapter tagsAdapter;
 	
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,7 +55,10 @@ public class ConcertDetailsFragment extends Fragment {
 	Mood chevaleresque = new Mood("chevaleresque", new ArrayList<Artist>());
 	Mood rebelle = new Mood("Rebelle", new ArrayList<Artist>());
 	
-	Artist birdyHunt = new Artist("Birdy Hunt", "birdyhunt.png", "birdyhunt-cover.png", labello, new ArrayList<Dig>(), new ArrayList<Concert>(), new ArrayList<Mood>(), new ArrayList<ReferenceArtist>());
+	Style rock = new Style("Rock", new ArrayList<Artist>());
+	Style medieval = new Style("Médiéval", new ArrayList<Artist>());
+	
+	Artist birdyHunt = new Artist("Birdy Hunt", "birdyhunt.png", "birdyhunt-cover.png", labello, new ArrayList<Dig>(), new ArrayList<Concert>(), new ArrayList<Style>(),  new ArrayList<Mood>(), new ArrayList<ReferenceArtist>());
 	birdyHunt.getMoodsList().add(sexy);
 	birdyHunt.getMoodsList().add(rebelle);
 	birdyHunt.getMoodsList().add(chevaleresque);
@@ -56,14 +67,18 @@ public class ConcertDetailsFragment extends Fragment {
 	sexy.getArtistsList().add(birdyHunt);
 	labello.getArtistsList().add(birdyHunt);
 	
-	Artist fifou = new Artist("Fifou Odrezal", "birdyhunt.png", "birdyhunt-cover.png", labello, new ArrayList<Dig>(), new ArrayList<Concert>(), new ArrayList<Mood>(), new ArrayList<ReferenceArtist>());
+	Artist fifou = new Artist("Fifou Odrezal", "birdyhunt.png", "birdyhunt-cover.png", labello, new ArrayList<Dig>(), new ArrayList<Concert>(), new ArrayList<Style>(),  new ArrayList<Mood>(), new ArrayList<ReferenceArtist>());
 	fifou.getMoodsList().add(sexy);
 	fifou.getMoodsList().add(rebelle);
 	fifou.getMoodsList().add(chevaleresque);
+	fifou.getStylesList().add(rock);
+	fifou.getStylesList().add(medieval);
 	rebelle.getArtistsList().add(fifou);
 	chevaleresque.getArtistsList().add(fifou);
 	sexy.getArtistsList().add(fifou);
 	labello.getArtistsList().add(fifou);
+	rock.getArtistsList().add(fifou);
+	medieval.getArtistsList().add(fifou);
 	
 	Place bataclan = new Place("Bataclan", "28 rue du Swag", new ArrayList<Concert>());
 	
@@ -93,13 +108,35 @@ public class ConcertDetailsFragment extends Fragment {
     // Concert
     Concert concert = concertsList.get(1); // TODO : get the concert in db depending on the concertId
     
-    //TextView
+    // Tags list
+    tagNamesList = new ArrayList<String>();
+    Log.i("MOODLIST", concert.getArtist().getMoodsList().toString());
+    for ( Mood mood : concert.getArtist().getMoodsList() ) {
+    	Log.i("MOOD", mood.getName());
+    	tagNamesList.add(mood.getName());
+	}
+    for ( ReferenceArtist reference : concert.getArtist().getReferencesList() ) {
+    	tagNamesList.add(reference.getName());
+	}
+    for ( Style style : concert.getArtist().getStylesList() ) {
+    	tagNamesList.add(style.getName());
+	}
+    
+    lvTagsList = (ListView)view.findViewById(R.id.tagsListView);
+    tagsAdapter = new TagsListAdapter(getActivity().getApplicationContext(), tagNamesList);
+	lvTagsList.setAdapter(tagsAdapter);
+    
+    
+    
+    // Layouts
     TextView tvArtistName = (TextView) view.findViewById(R.id.artistName);
     TextView tvArtistLabel = (TextView) view.findViewById(R.id.artistLabel);
     TextView tvDateAndPlace = (TextView) view.findViewById(R.id.dateAndPlace);
     tvArtistName.setText(concert.getArtist().getName());
     tvArtistLabel.setText(concert.getArtist().getLabel().getName());
     tvDateAndPlace.setText(concert.getDate()+" - "+concert.getPlace().getName());
+    
+    
 
     
     return view;
