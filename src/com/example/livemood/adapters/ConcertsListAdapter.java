@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.livemood.R;
 import com.example.livemood.models.Concert;
+import com.example.livemood.views.LMTextView;
 
 public class ConcertsListAdapter extends BaseAdapter {
 
@@ -61,12 +62,12 @@ public class ConcertsListAdapter extends BaseAdapter {
 			holder = new ViewHolder();
 
 			concertView = inflater.inflate(R.layout.concerts_list_item, null);
-			holder.artistName = (TextView) concertView.findViewById(R.id.concertName);
-			holder.labelName = (TextView) concertView.findViewById(R.id.labelName);
-			holder.placeName = (TextView) concertView.findViewById(R.id.placeName);
-			holder.date = (TextView) concertView.findViewById(R.id.date);
-			holder.reviewCount = (TextView) concertView.findViewById(R.id.reviewCount);
-			holder.hasBook = (TextView) concertView.findViewById(R.id.hasBook);
+			holder.artistName = (LMTextView) concertView.findViewById(R.id.concertName);
+			holder.labelName = (LMTextView) concertView.findViewById(R.id.labelName);
+			holder.placeName = (LMTextView) concertView.findViewById(R.id.placeName);
+			holder.date = (LMTextView) concertView.findViewById(R.id.date);
+			holder.reviewCount = (LMTextView) concertView.findViewById(R.id.reviewCount);
+			holder.hasBook = (LMTextView) concertView.findViewById(R.id.hasBook);
 			holder.artistImage = (ImageView) concertView.findViewById(R.id.artistImage);
 			holder.hasBookIcon = (ImageView) concertView.findViewById(R.id.hasBookIcon);
 			

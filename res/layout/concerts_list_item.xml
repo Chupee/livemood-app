@@ -15,7 +15,7 @@
         android:layout_marginRight="8dp"
         />
     
-    <TextView
+    <com.example.livemood.views.LMTextView
          android:id="@+id/concertName"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
          android:textStyle="bold"
          />
     
-    <TextView
+    <com.example.livemood.views.LMTextView
          android:id="@+id/labelName"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
          android:textSize="@dimen/concert_list_label_label"
          />
     
-    <TextView
+    <com.example.livemood.views.LMTextView
          android:id="@+id/reviewCount"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
          android:textSize="@dimen/concert_list_label_label"
          />
     
-    <TextView
+    <com.example.livemood.views.LMTextView
          android:id="@+id/date"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
 		 android:textColor="@color/coloredText"
          />
     
-    <TextView
+    <com.example.livemood.views.LMTextView
          android:id="@+id/placeName"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
 		 android:textColor="@color/coloredText"
          />
     
-    <TextView
+    <com.example.livemood.views.LMTextView
          android:id="@+id/hasBook"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"

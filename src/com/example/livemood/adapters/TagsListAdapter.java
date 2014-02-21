@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.livemood.R;
+import com.example.livemood.views.LMTextView;
 
 public class TagsListAdapter extends BaseAdapter {
 	private List<String> tagsList;
@@ -52,7 +53,7 @@ public class TagsListAdapter extends BaseAdapter {
 			holder = new ViewHolder();
 
 			concertView = inflater.inflate(R.layout.tags_list_item, null);
-			holder.tagName = (TextView) concertView.findViewById(R.id.tagListItem);
+			holder.tagName = (LMTextView) concertView.findViewById(R.id.tagListItem);
 
 			
 			concertView.setTag(holder);

@@ -131,8 +131,8 @@ public class ConcertDetailsFragment extends Fragment {
     
     // Layouts
     LMTextView tvArtistName = (LMTextView) view.findViewById(R.id.artistName);
-    TextView tvArtistLabel = (TextView) view.findViewById(R.id.artistLabel);
-    TextView tvDateAndPlace = (TextView) view.findViewById(R.id.dateAndPlace);
+    LMTextView tvArtistLabel = (LMTextView) view.findViewById(R.id.artistLabel);
+    LMTextView tvDateAndPlace = (LMTextView) view.findViewById(R.id.dateAndPlace);
     tvArtistName.setText(concert.getArtist().getName());
     tvArtistLabel.setText(concert.getArtist().getLabel().getName());
     tvDateAndPlace.setText(concert.getDate()+" - "+concert.getPlace().getName());

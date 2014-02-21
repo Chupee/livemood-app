@@ -60,7 +60,7 @@
 	 	         android:textSize="25sp"
 	 	         />
 	
-	 	     <TextView
+	 	     <com.example.livemood.views.LMTextView
 	 	         android:id="@+id/artistLabel"
 	 	         android:layout_width="wrap_content"
 	 	         android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
 	 	         android:paddingLeft="5dp"
 	 	         />
 	
-	 	     <TextView
+	 	     <com.example.livemood.views.LMTextView
 	 	         android:id="@+id/dateAndPlace"
 	 	         android:layout_width="wrap_content"
 	 	         android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
  	     android:paddingRight="22dp"
  		 >
  	     
- 	      <TextView 
+ 	      <com.example.livemood.views.LMTextView
  	         android:id="@+id/digsCount"
  	         android:layout_width="wrap_content"
  	         android:layout_height="wrap_content"
