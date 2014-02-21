@@ -50,7 +50,7 @@
 	 	     android:layout_marginBottom="10dp"
 	 	     >
  	     
-	 	     <TextView
+	 	     <com.example.livemood.views.LMTextView
 	 	         android:id="@+id/artistName"
 	 	         android:layout_width="wrap_content"
 	 	         android:layout_height="wrap_content"
@@ -119,9 +119,18 @@
  	     android:paddingTop="10dp"
  	     android:paddingLeft="22dp"
  	     android:paddingRight="22dp"
- 	 >
+ 		 >
+ 	     
+ 	      <TextView 
+ 	         android:id="@+id/digsCount"
+ 	         android:layout_width="wrap_content"
+ 	         android:layout_height="wrap_content"
+ 	         android:layout_centerHorizontal="true"
+ 	         android:text="184 chroniques"
+ 	         android:textSize="25sp"
+ 	         android:textColor="@color/digsText" 
+ 	         />
 
- 	 
  	 </RelativeLayout>
  	     
  	 

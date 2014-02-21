@@ -21,6 +21,7 @@ import com.example.livemood.models.Mood;
 import com.example.livemood.models.Place;
 import com.example.livemood.models.ReferenceArtist;
 import com.example.livemood.models.Style;
+import com.example.livemood.views.LMTextView;
 
 public class ConcertDetailsFragment extends Fragment {
 	
@@ -129,7 +130,7 @@ public class ConcertDetailsFragment extends Fragment {
     
     
     // Layouts
-    TextView tvArtistName = (TextView) view.findViewById(R.id.artistName);
+    LMTextView tvArtistName = (LMTextView) view.findViewById(R.id.artistName);
     TextView tvArtistLabel = (TextView) view.findViewById(R.id.artistLabel);
     TextView tvDateAndPlace = (TextView) view.findViewById(R.id.dateAndPlace);
     tvArtistName.setText(concert.getArtist().getName());

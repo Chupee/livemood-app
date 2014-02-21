@@ -13,5 +13,6 @@
 	<color name="buttonText">#ffffff</color>
 	<color name="buttonInverse">#ffffff</color>
 	<color name="buttonInverseText">#f77b1e</color>
+	<color name="digsText">#000000</color>
 	<color name="concertTitleText">#000000</color>
 </resources>
