@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.apmem.tools.layouts.FlowLayout;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -12,17 +11,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.TextView;
+import android.widget.ListView;
 
 import com.example.livemood.R;
+import com.example.livemood.adapters.DigsListAdapter;
 import com.example.livemood.models.Artist;
 import com.example.livemood.models.Concert;
 import com.example.livemood.models.Dig;
+import com.example.livemood.models.Digger;
 import com.example.livemood.models.Label;
 import com.example.livemood.models.Mood;
 import com.example.livemood.models.Place;
 import com.example.livemood.models.ReferenceArtist;
 import com.example.livemood.models.Style;
+import com.example.livemood.models.User;
 import com.example.livemood.views.LMTextView;
 
 public class ConcertDetailsFragment extends Fragment {
@@ -33,6 +35,9 @@ public class ConcertDetailsFragment extends Fragment {
 	private FlowLayout tagsLayout;
 	private LMTextView[] tvTags;
 	private ArrayList<String> tagNamesList;
+	
+	private ListView lvDigsList;
+	private DigsListAdapter digsAdapter;
 	
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,6 +58,15 @@ public class ConcertDetailsFragment extends Fragment {
     
     //
 	// Hard data (me gusta)
+    User chupee = new User("chupee", "tamere", "julie.chupee@gmail.com", new ArrayList<Artist>(), new ArrayList<Digger>(), new ArrayList<Concert>());
+
+    Digger diggingChupee = new Digger(chupee, new ArrayList<Dig>());
+    
+    Dig dig1 = new Dig(diggingChupee, "La grosse dig !", "Je n'ai jamais vu un tel dig de ma vie ! J'irais le revoir sans hésiter !", "2013-11-28", 3);
+    Dig dig2 = new Dig(diggingChupee, "La grosse dig le retour !", "Je n'ai jamais vu un tel dig de ma vie ! J'irais le revoir sans hésiter !", "2013-11-28", 2);
+    diggingChupee.getDigsList().add(dig1);
+    diggingChupee.getDigsList().add(dig2);
+    
 	Label labello = new Label("Labello", "labello.png", new ArrayList<Artist>());
 	
 	Mood sexy = new Mood("Sexy", new ArrayList<Artist>());
@@ -84,6 +98,9 @@ public class ConcertDetailsFragment extends Fragment {
 	rock.getArtistsList().add(fifou);
 	medieval.getArtistsList().add(fifou);
 	
+	fifou.getDigsList().add(dig1);
+	fifou.getDigsList().add(dig2);
+	
 	Place bataclan = new Place("Bataclan", "28 rue du Swag", new ArrayList<Concert>());
 	
 	Concert concert1 = new Concert(123456789, birdyHunt, bataclan, "2013-11-28", "concert1.png");
@@ -114,7 +131,6 @@ public class ConcertDetailsFragment extends Fragment {
     
     // Tags list
     tagNamesList = new ArrayList<String>();
-    Log.i("MOODLIST", concert.getArtist().getMoodsList().toString());
     for ( Mood mood : concert.getArtist().getMoodsList() ) {
     	Log.i("MOOD", mood.getName());
     	tagNamesList.add(mood.getName());
@@ -125,21 +141,23 @@ public class ConcertDetailsFragment extends Fragment {
     for ( Style style : concert.getArtist().getStylesList() ) {
     	tagNamesList.add(style.getName());
 	}
+    
     tvTags = new LMTextView[tagNamesList.size()];
-    Log.i("AGSTVVVVVTAGS !!!!!!!!!!!!!!!!!", tvTags.toString());
-
     for (int i = 0; i < tagNamesList.size(); i++) {
     	tvTags[i]= new LMTextView(getActivity());
 		tvTags[i].setText(tagNamesList.get(i));
-		Log.i("TVTAGS !!!!!!!!!!!!!!!!!", tvTags[i].toString());
 		tvTags[i].setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
 		tvTags[i].setBackgroundColor(getResources().getColor(R.color.tag));
 		tvTags[i].setTextColor(getResources().getColor(R.color.tagText));
 		tvTags[i].setPadding(4, 7, 4, 7);
 		tagsLayout.addView(tvTags[i]);
 	}
-
     
+    //Digs list
+    lvDigsList = (ListView)view.findViewById(R.id.digsListView);
+	digsAdapter = new DigsListAdapter(getActivity().getApplicationContext(), concert.getArtist().getDigsList());
+	lvDigsList.setAdapter(digsAdapter);
+
     
     // Layouts
     LMTextView tvArtistName = (LMTextView) view.findViewById(R.id.artistName);
@@ -149,8 +167,6 @@ public class ConcertDetailsFragment extends Fragment {
     tvArtistLabel.setText(concert.getArtist().getLabel().getName());
     tvDateAndPlace.setText(concert.getDate()+" - "+concert.getPlace().getName());
     
-    
-
     
     return view;
   }

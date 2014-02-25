@@ -7,11 +7,11 @@ public class Dig {
 	private Digger digger;
 	private String title;
 	private String content;
-	private DateFormat date;
+	private String date;
 	private int hearts;			 // 1, 2 or 3 hearts ?
 	
 	
-	public Dig(Digger digger, String title, String content, DateFormat date,
+	public Dig(Digger digger, String title, String content, String date,
 			int hearts) {
 		super();
 		this.digger = digger;
@@ -45,11 +45,11 @@ public class Dig {
 		this.content = content;
 	}
 
-	public DateFormat getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(DateFormat date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

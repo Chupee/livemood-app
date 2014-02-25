@@ -17,11 +17,13 @@ import com.example.livemood.adapters.ConcertsListAdapter;
 import com.example.livemood.models.Artist;
 import com.example.livemood.models.Concert;
 import com.example.livemood.models.Dig;
+import com.example.livemood.models.Digger;
 import com.example.livemood.models.Label;
 import com.example.livemood.models.Mood;
 import com.example.livemood.models.Place;
 import com.example.livemood.models.ReferenceArtist;
 import com.example.livemood.models.Style;
+import com.example.livemood.models.User;
 
 public class AgendaFragment extends Fragment {
  
@@ -44,6 +46,15 @@ public class AgendaFragment extends Fragment {
     
     //
    	// Hard data (me gusta)
+       User chupee = new User("chupee", "tamere", "julie.chupee@gmail.com", new ArrayList<Artist>(), new ArrayList<Digger>(), new ArrayList<Concert>());
+
+       Digger diggingChupee = new Digger(chupee, new ArrayList<Dig>());
+       
+       Dig dig1 = new Dig(diggingChupee, "La grosse dig !", "Je n'ai jamais vu un tel dig de ma vie ! J'irais le revoir sans hésiter !", "2013-11-28", 3);
+       Dig dig2 = new Dig(diggingChupee, "La grosse dig le retour !", "Je n'ai jamais vu un tel dig de ma vie ! J'irais le revoir sans hésiter !", "2013-11-28", 2);
+       diggingChupee.getDigsList().add(dig1);
+       diggingChupee.getDigsList().add(dig2);
+       
    	Label labello = new Label("Labello", "labello.png", new ArrayList<Artist>());
    	
    	Mood sexy = new Mood("Sexy", new ArrayList<Artist>());
@@ -74,6 +85,9 @@ public class AgendaFragment extends Fragment {
    	labello.getArtistsList().add(fifou);
    	rock.getArtistsList().add(fifou);
    	medieval.getArtistsList().add(fifou);
+   	
+   	fifou.getDigsList().add(dig1);
+   	fifou.getDigsList().add(dig2);
    	
    	Place bataclan = new Place("Bataclan", "28 rue du Swag", new ArrayList<Concert>());
    	
