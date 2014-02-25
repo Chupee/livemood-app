@@ -77,7 +77,7 @@ public class ConcertsListAdapter extends BaseAdapter {
 		}
 
 		/* Address name */
-		holder.artistImage.setImageResource(R.drawable.concert1);
+		holder.artistImage.setImageResource(R.drawable.concertcover1);
 		holder.artistName.setText(concertsList.get(position).getArtist().getName());
 		holder.labelName.setText(concertsList.get(position).getArtist().getLabel().getName());
 		holder.placeName.setText(concertsList.get(position).getPlace().getName());
