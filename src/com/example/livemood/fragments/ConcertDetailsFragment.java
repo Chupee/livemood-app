@@ -2,17 +2,19 @@ package com.example.livemood.fragments;
 
 import java.util.ArrayList;
 
+import org.apmem.tools.layouts.FlowLayout;
+
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.TextView;
 
 import com.example.livemood.R;
-import com.example.livemood.adapters.TagsListAdapter;
 import com.example.livemood.models.Artist;
 import com.example.livemood.models.Concert;
 import com.example.livemood.models.Dig;
@@ -28,14 +30,15 @@ public class ConcertDetailsFragment extends Fragment {
 	private final String TITLE = "Concert";
 	private int concertId;
 	
+	private FlowLayout tagsLayout;
+	private LMTextView[] tvTags;
 	private ArrayList<String> tagNamesList;
-	private ListView lvTagsList;
-	private TagsListAdapter tagsAdapter;
 	
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
     Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.concert_fragment, null);
+    tagsLayout = (FlowLayout)view.findViewById(R.id.tagsLayout);
     
     // Concert Id
     concertId = getArguments().getInt("concertId", 0);
@@ -122,11 +125,20 @@ public class ConcertDetailsFragment extends Fragment {
     for ( Style style : concert.getArtist().getStylesList() ) {
     	tagNamesList.add(style.getName());
 	}
-    
-    lvTagsList = (ListView)view.findViewById(R.id.tagsListView);
-    tagsAdapter = new TagsListAdapter(getActivity().getApplicationContext(), tagNamesList);
-	lvTagsList.setAdapter(tagsAdapter);
-    
+    tvTags = new LMTextView[tagNamesList.size()];
+    Log.i("AGSTVVVVVTAGS !!!!!!!!!!!!!!!!!", tvTags.toString());
+
+    for (int i = 0; i < tagNamesList.size(); i++) {
+    	tvTags[i]= new LMTextView(getActivity());
+		tvTags[i].setText(tagNamesList.get(i));
+		Log.i("TVTAGS !!!!!!!!!!!!!!!!!", tvTags[i].toString());
+		tvTags[i].setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
+		tvTags[i].setBackgroundColor(getResources().getColor(R.color.tag));
+		tvTags[i].setTextColor(getResources().getColor(R.color.tagText));
+		tvTags[i].setPadding(4, 7, 4, 7);
+		tagsLayout.addView(tvTags[i]);
+	}
+
     
     
     // Layouts
