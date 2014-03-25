@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.example.livemood.R;
 import com.example.livemood.models.Concert;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 public class ConcertsListAdapter extends BaseAdapter {
 
