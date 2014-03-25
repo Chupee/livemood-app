@@ -84,7 +84,6 @@ public class ConcertsListAdapter extends BaseAdapter {
 			holder = (ViewHolder) concertView.getTag();
 		}
 
-		/* Address name */
 		Concert current = concertsList.get(position);
 		holder.artistImage.setImageResource(R.drawable.concert1);
 		holder.artistName.setText(current.getArtist().getName());
