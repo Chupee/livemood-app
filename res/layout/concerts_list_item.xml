@@ -7,11 +7,9 @@
     android:paddingTop="@dimen/activity_vertical_padding"
     android:paddingRight="@dimen/activity_horizontal_padding"
     android:paddingLeft="@dimen/activity_horizontal_padding"
-    android:background="@layout/list_item_border"
-   
-    >
+    android:background="@layout/list_item_border">
     
-    <ImageView 
+    <ImageView
         android:id="@+id/artistImage"
         android:layout_width="@dimen/concert_list_item_thumbmail_width"
         android:layout_height="@dimen/concert_list_item_thumbmail_height"

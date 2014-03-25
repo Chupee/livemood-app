@@ -3,14 +3,14 @@ package com.example.livemood.models;
 
 public class Concert {
 	
-	private int id;
+	private String id;
 	private Artist artist;
 	private Place place;
 	private String date;
 	private String image;
 	
 	
-	public Concert(int id, Artist artist, Place place, String date, String image) {
+	public Concert(String id, Artist artist, Place place, String date, String image) {
 		super();
 		this.id = id;
 		this.artist = artist;
@@ -19,7 +19,7 @@ public class Concert {
 		this.image = image;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 

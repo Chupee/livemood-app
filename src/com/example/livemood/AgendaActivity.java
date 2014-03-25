@@ -21,7 +21,8 @@ import com.example.livemood.fragments.AgendaFragment;
 import com.example.livemood.fragments.HomeFragment;
 import com.example.livemood.fragments.PopularArtistsFragment;
 
-
+import com.parse.Parse;
+import com.parse.ParseObject;
 
 public class AgendaActivity extends FragmentActivity {
 	
@@ -83,8 +84,13 @@ public class AgendaActivity extends FragmentActivity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
         
-		
+		//Parse initialization
+        Parse.initialize(this, "UGGv3isXPDFKy6XlUZezn5blu68897tGlgupj2Tg", "D8V1oyIQ15lK1DWRqfXbiEkVbz305whpWuTSz1XH");
+        ParseObject testObject = new ParseObject("TestObject");
+        testObject.put("foo", "bar");
+        testObject.saveInBackground();
 	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
