@@ -18,23 +18,18 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.livemood.fragments.AgendaFragment;
-import com.example.livemood.fragments.MyConcertsFragment;
+import com.example.livemood.fragments.HomeFragment;
 import com.example.livemood.fragments.PopularArtistsFragment;
-import com.example.livemood.fragments.ProfileFragment;
-import com.example.livemood.fragments.RecommandedArtistsFragment;
+
 import com.parse.Parse;
 import com.parse.ParseObject;
-
-
 
 public class AgendaActivity extends FragmentActivity {
 	
 	/* Drawer Navigation */
-	private final int profilePosition = 			0;
+	private final int homePosition =	 			0;
 	private final int agendaPosition = 				1;
-	private final int myConcertsPosition = 			2;
-	private final int popularArtistsPosition = 		3;
-	private final int recommandedArtistsPosition = 	4;
+	private final int popularArtistsPosition = 		2;
 
 	private String[] drawerItems;
 	private DrawerLayout drawerLayout;
@@ -161,23 +156,17 @@ public class AgendaActivity extends FragmentActivity {
         // create a new fragment and specify the planet to show based on position
     	Fragment fragment = null;
     	switch (position) {
-			case profilePosition:
-				fragment = new ProfileFragment();
+			case homePosition:
+				fragment = new HomeFragment();
 				break;
 			case agendaPosition:
 				fragment = new AgendaFragment();
 				break;
-			case myConcertsPosition:
-				fragment = new MyConcertsFragment();
-				break;
 			case popularArtistsPosition:
 				fragment = new PopularArtistsFragment();
 				break;
-			case recommandedArtistsPosition:
-				fragment = new RecommandedArtistsFragment();
-				break;
 			default:
-				fragment = new AgendaFragment();
+				fragment = new HomeFragment();
 				break;
 		}
         

@@ -106,7 +106,6 @@ public class AgendaFragment extends Fragment {
 
 		}
 	});
-	
     return view;
   }
   

@@ -10,10 +10,20 @@
 	    android:paddingTop="@dimen/activity_vertical_padding"
 	    tools:context=".AgendaActivity" >
 	    
+    	<com.example.livemood.views.LMTextView
+    	    android:id="@+id/AgendaTitle"
+        	android:layout_width="wrap_content"
+        	android:layout_height="match_parent"
+    		android:text="@string/agenda_label_comingconcert"
+    		android:textColor="@color/coloredText"
+        	android:textAppearance="?android:attr/textAppearanceLarge" />
+    
 	    <ListView
 	         android:id="@+id/concertsList"
 	         android:divider="@color/appBackground"
 	         android:dividerHeight="@dimen/concert_list_item_space"
 	         android:layout_width="match_parent"
-	         android:layout_height="fill_parent"/>
+	         android:layout_height="fill_parent"
+	         android:paddingTop="@dimen/concert_list_padding_top"/>
+	    
 	</RelativeLayout>
