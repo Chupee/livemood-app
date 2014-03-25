@@ -69,7 +69,6 @@ public class PopularArtistsFragment extends Fragment {
 				artist = new Artist(parseArtist.get("name").toString(), "", "", label);
 				Log.i("ARTIST PARSED", artist.toString());
 				artistsList.add(artist);
-				Log.d("OK", "OK");
 			}
 			Log.i("ARTIST LIST PARSED", artistsList.toString());
 			lvListe = (ListView)view.findViewById(R.id.artistsList);
