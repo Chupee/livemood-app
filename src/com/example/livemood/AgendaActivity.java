@@ -29,9 +29,8 @@ import com.parse.ParseObject;
 public class AgendaActivity extends FragmentActivity {
 	
 	/* Drawer Navigation */
-	private final int homePosition =	 			0;
-	private final int agendaPosition = 				1;
-	private final int popularArtistsPosition = 		2;
+	private final int agendaPosition = 				0;
+	private final int popularArtistsPosition = 		1;
 
 	private ArrayList<String> drawerItems, drawerIcons;
 	private DrawerLayout drawerLayout;
@@ -159,9 +158,6 @@ public class AgendaActivity extends FragmentActivity {
         // create a new fragment and specify the planet to show based on position
     	Fragment fragment = null;
     	switch (position) {
-			case homePosition:
-				fragment = new HomeFragment();
-				break;
 			case agendaPosition:
 				fragment = new AgendaFragment();
 				break;
