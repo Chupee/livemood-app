@@ -76,7 +76,7 @@ public class AgendaFragment extends Fragment {
 				parseLabel = parseArtist.getParseObject("label");
 				parsePlace = parseConcert.getParseObject("place");
 				label = new Label(parseLabel.get("name").toString(), "");
-				artist = new Artist(parseArtist.get("id").toString(), parseArtist.get("name").toString(), "", "", label);
+				artist = new Artist(parseArtist.getObjectId(), parseArtist.get("name").toString(), "", "", label);
 				place = new Place(parsePlace.get("name").toString(), "");
 				concert = new Concert(parseConcert.getObjectId(), artist, place, parseConcert.get("date").toString(), "");
 				concertsList.add(concert);
