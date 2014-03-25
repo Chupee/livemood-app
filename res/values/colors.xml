@@ -6,13 +6,13 @@
 	<color name="listItemBackground">#ffffff</color>
 	<color name="listBorderBottom">#b3b3b3</color>
 	<color name="text">#939393</color>
-	<color name="coloredText">#f77b1e</color>
-	<color name="tag">#f29b5a</color>
+	<color name="coloredText">#dd4c4c</color>
+	<color name="tag">#cb6666</color>
 	<color name="tagText">#ffffff</color>
-	<color name="button">#f77b1e</color>
+	<color name="button">#dd4c4c</color>
 	<color name="buttonText">#ffffff</color>
 	<color name="buttonInverse">#ffffff</color>
-	<color name="buttonInverseText">#f77b1e</color>
+	<color name="buttonInverseText">#dd4c4c</color>
 	<color name="digsText">#000000</color>
 	<color name="digsBackground">#FFFFFF</color>
 	<color name="concertTitleText">#000000</color>
