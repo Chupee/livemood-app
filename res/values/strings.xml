@@ -26,6 +26,7 @@
     <string name="label_goingButton">J\'y vais !</string>
     
     <string name="agenda_label_comingconcert">Les prochains concerts</string>
+    <string name="artists_label_title">Les artistes en vogue</string>
     
     <string name="content_description_artist">Photo de l\'artiste</string>
 

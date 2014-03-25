@@ -15,7 +15,7 @@
         	android:layout_width="wrap_content"
         	android:layout_height="match_parent"
     		android:text="@string/agenda_label_comingconcert"
-    		android:textColor="@color/coloredText"
+    		android:textColor="@color/text"
         	android:textAppearance="?android:attr/textAppearanceLarge" />
     
 	    <ListView

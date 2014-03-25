@@ -2,14 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_padding"
+    android:paddingLeft="@dimen/activity_horizontal_padding"
+    android:paddingRight="@dimen/activity_horizontal_padding"
+    android:paddingTop="@dimen/activity_vertical_padding"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="Popular artists fragment"
-        android:layout_gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <com.example.livemood.views.LMTextView
+    	    android:id="@+id/ArtistsTitle"
+        	android:layout_width="wrap_content"
+        	android:layout_height="match_parent"
+    		android:text="@string/artists_label_title"
+    		android:textColor="@color/text"
+        	android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    <ListView
+	         android:id="@+id/artistsList"
+	         android:divider="@color/appBackground"
+	         android:dividerHeight="@dimen/concert_list_item_space"
+	         android:layout_width="match_parent"
+	         android:layout_height="fill_parent"
+	         android:paddingTop="@dimen/concert_list_padding_top"/>
 
 </LinearLayout> 

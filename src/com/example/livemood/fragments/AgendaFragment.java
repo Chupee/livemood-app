@@ -79,7 +79,6 @@ public class AgendaFragment extends Fragment {
 				place = new Place(parsePlace.get("name").toString(), "");
 				concert = new Concert(parseConcert.getObjectId(), artist, place, parseConcert.get("date").toString(), "");
 				concertsList.add(concert);
-				Log.d("OK", "OK");
 			}
 			lvListe = (ListView)view.findViewById(R.id.concertsList);
 			adapter = new ConcertsListAdapter(getActivity().getApplicationContext(), concertsList);
