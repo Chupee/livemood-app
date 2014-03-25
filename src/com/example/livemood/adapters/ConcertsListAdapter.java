@@ -1,6 +1,6 @@
 package com.example.livemood.adapters;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,15 +12,20 @@ import android.widget.TextView;
 
 import com.example.livemood.R;
 import com.example.livemood.models.Concert;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 public class ConcertsListAdapter extends BaseAdapter {
 
-	private List<Concert> concertsList;
+	private ArrayList<Concert> concertsList;
+	private Context context;
+	
 	LayoutInflater inflater;
 	
-	public ConcertsListAdapter(Context context, List<Concert> list){
-		this.concertsList = list;
+	public ConcertsListAdapter(Context context, ArrayList<Concert> concertsList2){
+		this.concertsList = concertsList2;
 		this.inflater = LayoutInflater.from(context);
+		this.context = context;
 	}
 	
 	public int getCount(){
@@ -50,12 +55,12 @@ public class ConcertsListAdapter extends BaseAdapter {
 		concertsList.clear();
 	}
 	
-	public void setList(List<Concert> list) {
+	public void setList(ArrayList<Concert> list) {
 		concertsList = list;
 	}
 	
 	public View getView(int position, View concertView, ViewGroup parent) {
-		ViewHolder holder;
+		ViewHolder holder = null;
 
 		if (concertView == null) {
 			holder = new ViewHolder();
@@ -68,6 +73,11 @@ public class ConcertsListAdapter extends BaseAdapter {
 			holder.reviewCount = (TextView) concertView.findViewById(R.id.reviewCount);
 			holder.hasBook = (TextView) concertView.findViewById(R.id.hasBook);
 			holder.artistImage = (ImageView) concertView.findViewById(R.id.artistImage);
+			
+			String imageUrl = "http://lorempixel.com/230/130/";
+			ImageLoader imageLoader = ImageLoader.getInstance();
+			//imageLoader.init(ImageLoaderConfiguration.createDefault(context));
+			imageLoader.displayImage(imageUrl, holder.artistImage);
 			holder.hasBookIcon = (ImageView) concertView.findViewById(R.id.hasBookIcon);
 			
 			concertView.setTag(holder);
@@ -76,11 +86,12 @@ public class ConcertsListAdapter extends BaseAdapter {
 		}
 
 		/* Address name */
+		Concert current = concertsList.get(position);
 		holder.artistImage.setImageResource(R.drawable.concert1);
-		holder.artistName.setText(concertsList.get(position).getArtist().getName());
-		holder.labelName.setText(concertsList.get(position).getArtist().getLabel().getName());
-		holder.placeName.setText(concertsList.get(position).getPlace().getName());
-		holder.date.setText(concertsList.get(position).getDate());
+		holder.artistName.setText(current.getArtist().getName());
+		holder.labelName.setText(current.getArtist().getLabel().getName());
+		holder.placeName.setText(current.getPlace().getName());
+		holder.date.setText(current.getDate());
 		holder.reviewCount.setText("15 chroniques");
 		boolean hasBook = true ; // TODO : get the real state of this field by asking User data
 		if(hasBook) {

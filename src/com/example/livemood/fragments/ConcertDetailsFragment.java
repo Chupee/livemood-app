@@ -31,7 +31,7 @@ public class ConcertDetailsFragment extends Fragment {
     // Concert Id
     concertId = getArguments().getInt("concertId", 0);
 	try {
-		if(concertId == 0) { throw new Exception("Erreur : le concert sélectionné n'existe pas."); }
+		if(concertId == 0) { throw new Exception("Erreur : le concert sï¿½lectionnï¿½ n'existe pas."); }
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
@@ -41,7 +41,7 @@ public class ConcertDetailsFragment extends Fragment {
     
     //
 	// Hard data (me gusta)
-	Label labello = new Label("Labello", "labello.png", new ArrayList<Artist>());
+	/*Label labello = new Label("Labello", "labello.png", new ArrayList<Artist>());
 	
 	Mood sexy = new Mood("Sexy", new ArrayList<Artist>());
 	Mood chevaleresque = new Mood("chevaleresque", new ArrayList<Artist>());
@@ -79,16 +79,16 @@ public class ConcertDetailsFragment extends Fragment {
 	bataclan.getConcertsList().add(concert1);
 	bataclan.getConcertsList().add(concert2);
 	bataclan.getConcertsList().add(concert3);
-	bataclan.getConcertsList().add(concert4);
+	bataclan.getConcertsList().add(concert4);*/
 	
 	//
 	// List
 	//
 	ArrayList<Concert> concertsList = new ArrayList<Concert>();
-	concertsList.add(concert1);
+	/*concertsList.add(concert1);
 	concertsList.add(concert2);
 	concertsList.add(concert3);
-	concertsList.add(concert4);
+	concertsList.add(concert4);*/
     
     // Concert
     Concert concert = concertsList.get(1); // TODO : get the concert in db depending on the concertId
@@ -109,10 +109,10 @@ public class ConcertDetailsFragment extends Fragment {
     super.onActivityCreated(savedInstanceState);  
   }
   
-  public static ConcertDetailsFragment newInstance(int concertId) {
+  public static ConcertDetailsFragment newInstance(String concertId2) {
 		ConcertDetailsFragment concertDetailsFragment = new ConcertDetailsFragment();
 	    Bundle args = new Bundle();
-	    args.putInt("concertId", concertId);
+	    args.putString("concertId", concertId2);
 	    concertDetailsFragment.setArguments(args);
 	    return concertDetailsFragment;
   }
