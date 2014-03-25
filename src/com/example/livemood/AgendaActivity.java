@@ -22,8 +22,6 @@ import com.example.livemood.fragments.MyConcertsFragment;
 import com.example.livemood.fragments.PopularArtistsFragment;
 import com.example.livemood.fragments.ProfileFragment;
 import com.example.livemood.fragments.RecommandedArtistsFragment;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
@@ -48,8 +46,6 @@ public class AgendaActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		ImageLoader imageLoader = ImageLoader.getInstance();
-		imageLoader.init(ImageLoaderConfiguration.createDefault(getApplicationContext()));
 		setContentView(R.layout.activity_agenda);
 		
 		//
