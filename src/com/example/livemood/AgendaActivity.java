@@ -1,5 +1,8 @@
 package com.example.livemood;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import android.app.ActionBar;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -13,14 +16,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.livemood.adapters.DrawerListAdapter;
 import com.example.livemood.fragments.AgendaFragment;
 import com.example.livemood.fragments.HomeFragment;
 import com.example.livemood.fragments.PopularArtistsFragment;
-
 import com.parse.Parse;
 import com.parse.ParseObject;
 
@@ -31,7 +33,7 @@ public class AgendaActivity extends FragmentActivity {
 	private final int agendaPosition = 				1;
 	private final int popularArtistsPosition = 		2;
 
-	private String[] drawerItems;
+	private ArrayList<String> drawerItems, drawerIcons;
 	private DrawerLayout drawerLayout;
 	private ListView drawerList;
 	private ActionBarDrawerToggle drawerToggle;
@@ -55,9 +57,10 @@ public class AgendaActivity extends FragmentActivity {
 		//
 		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		drawerList = (ListView) findViewById(R.id.left_drawer);
-		drawerItems = getResources().getStringArray(R.array.items);
+		drawerItems = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.items)));
+		drawerIcons = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.itemIcons)));
 		// Set the adapter for the list view
-        drawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, R.id.itemName, drawerItems));
+        drawerList.setAdapter(new DrawerListAdapter(this, drawerItems, drawerIcons));
         // Set the list's click listener
         drawerList.setOnItemClickListener(new DrawerItemClickListener());
         // Drawer toggle

@@ -1,7 +1,13 @@
 package com.example.livemood.fragments;
 
+import java.util.HashMap;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,26 +62,44 @@ public class ConcertDetailsFragment extends Fragment {
 	
 	query.getInBackground(concertId, new GetCallback<ParseObject>() {
 		
+		@SuppressWarnings("unused")
 		@Override
 		public void done(ParseObject arg0, ParseException arg1) {
 			// TODO Auto-generated method stub
 			ParseObject parseConcert = new ParseObject("concert");
 			ParseObject parseArtist = new ParseObject("artist");
+			JSONArray parseMoodsList = new JSONArray();
 			ParseObject parseLabel = new ParseObject("label");
 			ParseObject parsePlace = new ParseObject("place");
 			
 			Artist artist = null;
 			Place place = null;
 			Label label = null;
-			
 			parseConcert = arg0;
 			parseArtist = parseConcert.getParseObject("artist");
+			parseMoodsList = parseArtist.getJSONArray("moods");
+			//[{"__type":"Pointer","className":"mood","objectId":"rjvj1sMASP"},{"__type":"Pointer","className":"mood","objectId":"gxQB4dAYkH"}]
+			
+			parseMoodsList = parseArtist.getJSONArray("moods");
 			parseLabel = parseArtist.getParseObject("label");
 			parsePlace = parseConcert.getParseObject("place");
 			label = new Label(parseLabel.get("name").toString(), "");
 			artist = new Artist(parseArtist.get("name").toString(), "", "", label);
 			place = new Place(parsePlace.get("name").toString(), "");
 			concert = new Concert(parseConcert.getObjectId(), artist, place, parseConcert.get("date").toString(), "");
+			
+			//MOODS MANAGEMENT
+			HashMap<String, String> moodsList = new HashMap<String,String>();
+	        for(int i = 0; i < parseMoodsList.length(); i++){
+				String value;
+				try {
+					value = (String) parseMoodsList.getString(i);
+					//artist.getMoodList
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }
 			
 			//TextView
 		    TextView tvArtistName = (TextView) view.findViewById(R.id.artistName);
