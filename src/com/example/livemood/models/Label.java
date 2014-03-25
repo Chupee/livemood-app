@@ -1,21 +1,15 @@
 package com.example.livemood.models;
 
-import java.util.ArrayList;
-
-import android.graphics.drawable.Drawable;
 
 public class Label {
 	
 	private String name;
 	private String icon;
-	private ArrayList<Artist> artistsList;
 	
-	
-	public Label(String name, String icon, ArrayList<Artist> artistsList) {
+	public Label(String name, String icon) {
 		super();
 		this.name = name;
 		this.icon = icon;
-		this.artistsList = artistsList;
 	}
 	
 
@@ -34,15 +28,6 @@ public class Label {
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
-
-	public ArrayList<Artist> getArtistsList() {
-		return artistsList;
-	}
-
-	public void setArtistsList(ArrayList<Artist> artistsList) {
-		this.artistsList = artistsList;
-	}
-	
 	
 
 }

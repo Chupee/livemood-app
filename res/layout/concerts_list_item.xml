@@ -8,8 +8,6 @@
     android:paddingRight="@dimen/activity_horizontal_padding"
     android:paddingLeft="@dimen/activity_horizontal_padding"
     android:background="@layout/list_item_border"
-   
-    >
     
     <ImageView 
         android:id="@+id/artistImage"
