@@ -8,10 +8,21 @@
     android:paddingTop="@dimen/activity_vertical_padding"
     tools:context=".AgendaActivity" >
 
+    <ImageView 
+         android:id="@+id/itemIcon"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:adjustViewBounds="true"
+        />
+    
     <TextView
          android:id="@+id/itemName"
          android:textColor="#FFFFFF"
          android:layout_width="match_parent"
-         android:layout_height="fill_parent"/>
+         android:layout_height="fill_parent"
+         android:layout_toRightOf="@id/itemIcon"
+         android:layout_marginLeft="@dimen/activity_horizontal_padding"
+    	 android:layout_marginTop="5dp"
+         />
 
 </RelativeLayout>
