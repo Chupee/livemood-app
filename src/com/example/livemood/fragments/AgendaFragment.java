@@ -38,7 +38,8 @@ public class AgendaFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
     Bundle savedInstanceState) {
-    final View view = inflater.inflate(R.layout.agenda_fragment, null);
+	  
+	 final View view = inflater.inflate(R.layout.agenda_fragment, null);
     
     //
     // Update action bar

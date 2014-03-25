@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import android.app.ActionBar;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -91,6 +92,17 @@ public class AgendaActivity extends FragmentActivity {
         ParseObject testObject = new ParseObject("TestObject");
         testObject.put("foo", "bar");
         testObject.saveInBackground();
+        
+     // Insert the fragment by replacing any existing fragment
+        Fragment homeFragment = new HomeFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                       .replace(R.id.content_frame, homeFragment)
+                       .addToBackStack(homeFragment.getTag())
+                       .commit();
+
+        // Highlight the selected item, update the title, and close the drawer
+        drawerLayout.closeDrawer(drawerList);
 	}
 	
 
@@ -180,5 +192,29 @@ public class AgendaActivity extends FragmentActivity {
         drawerList.setItemChecked(position, true);
         drawerLayout.closeDrawer(drawerList);
     }
+    
+    public void goToAgenda(View v) {
+  	  Fragment fragment = new AgendaFragment();
+  	  FragmentManager fragmentManager = getSupportFragmentManager();
+  	  fragmentManager.beginTransaction()
+                   .replace(R.id.content_frame, fragment)
+                   .addToBackStack(fragment.getTag())
+                   .commit();
+  	  // Highlight the selected item, update the title, and close the drawer
+      drawerList.setItemChecked(agendaPosition, true);
+      drawerLayout.closeDrawer(drawerList);
+    }
+    
+    public void goToPopularArtists(View v) {
+    	  Fragment fragment = new PopularArtistsFragment();
+    	  FragmentManager fragmentManager = getSupportFragmentManager();
+    	  fragmentManager.beginTransaction()
+                     .replace(R.id.content_frame, fragment)
+                     .addToBackStack(fragment.getTag())
+                     .commit();
+    	  // Highlight the selected item, update the title, and close the drawer
+        drawerList.setItemChecked(popularArtistsPosition, true);
+        drawerLayout.closeDrawer(drawerList);
+      }
 
 }
