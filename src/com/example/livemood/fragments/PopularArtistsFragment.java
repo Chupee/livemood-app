@@ -6,6 +6,7 @@ import java.util.List;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,7 +67,7 @@ public class PopularArtistsFragment extends Fragment {
 				parseArtist = it.next();
 				parseLabel = parseArtist.getParseObject("label");
 				label = new Label(parseLabel.get("name").toString(), "");
-				artist = new Artist(parseArtist.get("name").toString(), "", "", label);
+				artist = new Artist(parseArtist.get("id").toString(), parseArtist.get("name").toString(), "", "", label);
 				Log.i("ARTIST PARSED", artist.toString());
 				artistsList.add(artist);
 			}
@@ -80,17 +81,17 @@ public class PopularArtistsFragment extends Fragment {
       	    lvListe.setOnItemClickListener(new OnItemClickListener() {
 		  	  @Override
 		  	  public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//		  	    String concertId = artistsList.get(position).getId();
-//		  	    // Insert the fragment by replacing any existing fragment
-//		  	    Fragment fragment = ConcertDetailsFragment.newInstance(concertId);
-//		  	    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//		        fragmentManager.beginTransaction()
-//		                       .replace(R.id.content_frame, fragment)
-//		                       .addToBackStack(fragment.getTag())
-//		                       .commit();
-//
-//		        // Update the title
-//		        getActivity().getActionBar().setTitle("Concert");
+		  	    String artistId = artistsList.get(position).getId();
+		  	    // Insert the fragment by replacing any existing fragment
+		  	    Fragment fragment = ArtistDetailsFragment.newInstance(artistId);
+		  	    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+		        fragmentManager.beginTransaction()
+		                       .replace(R.id.content_frame, fragment)
+		                       .addToBackStack(fragment.getTag())
+		                       .commit();
+
+		        // Update the title
+		        getActivity().getActionBar().setTitle("Artiste");
 		        
 		  	  }
     	  	}); 

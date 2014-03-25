@@ -3,18 +3,24 @@ package com.example.livemood.models;
 
 public class Artist {
 	
+	private String id;
 	private String name;
 	private String picture;
 	private String coverPicture;
 	private Label label;
 	
-	public Artist(String name, String picture, String coverPicture,
+	public Artist(String id, String name, String picture, String coverPicture,
 			Label label) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.picture = picture;
 		this.coverPicture = coverPicture;
 		this.label = label;
+	}
+	
+	public String getId() {
+		return id;
 	}
 
 	public String getName() {
