@@ -1,7 +1,9 @@
 package com.example.livemood.fragments;
 
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
+import android.app.ActionBar.LayoutParams;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.example.livemood.R;
 import com.example.livemood.adapters.ConcertsListAdapter;
@@ -37,6 +40,7 @@ public class AgendaFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
     Bundle savedInstanceState) {
+	  
     View view = inflater.inflate(R.layout.agenda_fragment, null);
     
     //
@@ -104,8 +108,7 @@ public class AgendaFragment extends Fragment {
    	bataclan.getConcertsList().add(concert2);
    	bataclan.getConcertsList().add(concert3);
    	bataclan.getConcertsList().add(concert4);
-	
-	
+   	
 	//
 	// List
 	//
@@ -119,10 +122,15 @@ public class AgendaFragment extends Fragment {
 	adapter = new ConcertsListAdapter(getActivity().getApplicationContext(), concertsList);
     lvListe.setAdapter(adapter);
     
+    
+	
+	
+    
     lvListe.setOnItemClickListener(new OnItemClickListener() {
   	  @Override
   	  public void onItemClick(AdapterView<?> parent, View view,
   	    int position, long id) {
+  		  
   	    int concertId = concertsList.get(position).getId();
   	    // Insert the fragment by replacing any existing fragment
   	    Fragment fragment = ConcertDetailsFragment.newInstance(concertId);
@@ -134,7 +142,7 @@ public class AgendaFragment extends Fragment {
 
         // Update the title
         getActivity().getActionBar().setTitle(("Concert"));
-        
+                
   	  }
   	}); 
     

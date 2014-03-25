@@ -9,14 +9,14 @@ import android.view.ViewGroup;
 import com.example.livemood.R;
 
 
-public class ProfileFragment extends Fragment {
+public class HomeFragment extends Fragment {
 	
-	private final String TITLE = "Mon profil";
+	private final String TITLE = "Accueil";
 	
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
     Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.profile_fragment, null);
+    View view = inflater.inflate(R.layout.home_fragment, null);
 
     //
     // Update action bar
