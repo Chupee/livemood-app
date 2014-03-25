@@ -15,6 +15,9 @@
         <item>bars</item>
     </string-array>
     
+    <string name="home_button1_text">AGENDA</string>
+    <string name="home_button2_text">ARTISTES EN VOGUE</string>
+    
     <string name="action_update">Update</string>
     <string name="drawer_open">Open Drawer</string>
     <string name="drawer_close">Close Drawer</string>

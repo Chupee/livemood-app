@@ -16,4 +16,5 @@
 	<color name="digsText">#000000</color>
 	<color name="digsBackground">#FFFFFF</color>
 	<color name="concertTitleText">#000000</color>
+	<color name="white">#FFFFFF</color>
 </resources>
