@@ -68,7 +68,7 @@ public class PopularArtistsFragment extends Fragment {
 				parseArtist = it.next();
 				parseLabel = parseArtist.getParseObject("label");
 				label = new Label(parseLabel.get("name").toString(), "");
-				artist = new Artist(parseArtist.getObjectId(), parseArtist.get("name").toString(), "", "", label);
+				artist = new Artist(parseArtist.getObjectId(), parseArtist.get("name").toString(), "", parseArtist.getString("image"), label);
 				Log.i("ARTIST PARSED", artist.toString());
 				artistsList.add(artist);
 			}

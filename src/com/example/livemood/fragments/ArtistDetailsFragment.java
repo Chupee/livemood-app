@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ import com.example.livemood.models.Concert;
 import com.example.livemood.models.Label;
 import com.example.livemood.models.Place;
 import com.example.livemood.views.LMTextView;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -43,6 +45,7 @@ public class ArtistDetailsFragment extends Fragment {
 	private FlowLayout tagsLayout;
 	private ArrayList<Concert> concertsList = new ArrayList<Concert>();
 	private ListView lvListe;
+	private ImageView coverImg;
 	private ConcertsListAdapter adapter;
 	
   @Override
@@ -50,6 +53,7 @@ public class ArtistDetailsFragment extends Fragment {
     Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.artist_fragment, null);
     tagsLayout = (FlowLayout)view.findViewById(R.id.tagsLayout);
+    coverImg = (ImageView)view.findViewById(R.id.concertCover);
     
     // Concert Id
     artistId = getArguments().getString("artistId");
@@ -94,7 +98,7 @@ public class ArtistDetailsFragment extends Fragment {
 	        
 	        parseLabel = parseArtist.getParseObject("label");
 			label = new Label(parseLabel.get("name").toString(), "");
-			artist = new Artist(parseArtist.getObjectId(), parseArtist.get("name").toString(), "", "", label);
+			artist = new Artist(parseArtist.getObjectId(), parseArtist.get("name").toString(), "", parseArtist.getString("image"), label);
 			
 		    TextView tvArtistName = (TextView) view.findViewById(R.id.artistName);
 		    TextView tvArtistLabel = (TextView) view.findViewById(R.id.artistLabel);
@@ -119,6 +123,9 @@ public class ArtistDetailsFragment extends Fragment {
 				}
 	        }
 	        
+	        ImageLoader imageLoader = ImageLoader.getInstance();
+			imageLoader.displayImage(artist.getCoverPicture(), coverImg);
+			
 	        // Get the upcoming concerts
 	        
 	        ParseQuery<ParseObject> concertQuery = ParseQuery.getQuery("concert");
@@ -169,7 +176,7 @@ public class ArtistDetailsFragment extends Fragment {
 							}
 
 							place = new Place(parsePlace.getString("name"), "");
-							concert = new Concert(parseConcert.getObjectId(), artist, place, concertDate, "");
+							concert = new Concert(parseConcert.getObjectId(), artist, place, concertDate, parseConcert.getString("image"));
 
 							concertsList.add(concert);
 							

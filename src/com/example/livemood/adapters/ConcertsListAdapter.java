@@ -62,33 +62,33 @@ public class ConcertsListAdapter extends BaseAdapter {
 	
 	public View getView(int position, View concertView, ViewGroup parent) {
 		ViewHolder holder = null;
+		
+		Concert current = concertsList.get(position);
 
 		if (concertView == null) {
 			holder = new ViewHolder();
-
-			concertView = inflater.inflate(R.layout.concerts_list_item, null);
-			holder.artistName = (TextView) concertView.findViewById(R.id.concertName);
-			holder.labelName = (TextView) concertView.findViewById(R.id.labelName);
-			holder.placeName = (TextView) concertView.findViewById(R.id.placeName);
-			holder.date = (TextView) concertView.findViewById(R.id.date);
-			holder.reviewCount = (TextView) concertView.findViewById(R.id.reviewCount);
-			holder.hasBook = (TextView) concertView.findViewById(R.id.hasBook);
-			holder.artistImage = (ImageView) concertView.findViewById(R.id.artistImage);
-			
-			String imageUrl = "http://lorempixel.com/230/130/";
-			ImageLoader imageLoader = ImageLoader.getInstance();
-			//imageLoader.init(ImageLoaderConfiguration.createDefault(context));
-			imageLoader.displayImage(imageUrl, holder.artistImage);
-			holder.hasBookIcon = (ImageView) concertView.findViewById(R.id.hasBookIcon);
-			
-			concertView.setTag(holder);
-			Log.i("VIEW == NULL",  "CONCERTS LIST ADAPTER");
 		} else {
 			holder = (ViewHolder) concertView.getTag();
 		}
-
-		Concert current = concertsList.get(position);
+		
+		concertView = inflater.inflate(R.layout.concerts_list_item, null);
+		holder.artistName = (TextView) concertView.findViewById(R.id.concertName);
+		holder.labelName = (TextView) concertView.findViewById(R.id.labelName);
+		holder.placeName = (TextView) concertView.findViewById(R.id.placeName);
+		holder.date = (TextView) concertView.findViewById(R.id.date);
+		holder.reviewCount = (TextView) concertView.findViewById(R.id.reviewCount);
+		holder.hasBook = (TextView) concertView.findViewById(R.id.hasBook);
+		holder.artistImage = (ImageView) concertView.findViewById(R.id.artistImage);
+		
 		holder.artistImage.setImageResource(R.drawable.concert1);
+		
+		ImageLoader imageLoader = ImageLoader.getInstance();
+		imageLoader.displayImage(current.getImage(), holder.artistImage);
+		holder.hasBookIcon = (ImageView) concertView.findViewById(R.id.hasBookIcon);
+		
+		concertView.setTag(holder);
+		Log.i("VIEW == NULL",  "CONCERTS LIST ADAPTER");
+		
 		holder.artistName.setText(current.getArtist().getName());
 		holder.labelName.setText(current.getArtist().getLabel().getName());
 		holder.placeName.setText(current.getPlace().getName());

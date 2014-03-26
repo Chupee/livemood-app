@@ -60,79 +60,84 @@ public class AgendaFragment extends Fragment {
 		@Override
 		public void done(List<ParseObject> arg0, ParseException arg1) {
 
-			//
-			// List
-			//
-			ParseObject parseConcert = new ParseObject("concert");
-			ParseObject parseArtist = new ParseObject("artist");
-			ParseObject parseLabel = new ParseObject("label");
-			ParseObject parsePlace = new ParseObject("place");
-			
-			Artist artist = null;
-			Concert concert = null;
-			Place place = null;
-			Label label = null;
-			
-			for(Iterator<ParseObject> it = arg0.iterator(); it.hasNext();) {
-				parseConcert = it.next();
-				parseArtist = parseConcert.getParseObject("artist");
-				parseLabel = parseArtist.getParseObject("label");
-				parsePlace = parseConcert.getParseObject("place");
-				label = new Label(parseLabel.get("name").toString(), "");
-				artist = new Artist(parseArtist.getObjectId(), parseArtist.get("name").toString(), "", "", label);
-				place = new Place(parsePlace.get("name").toString(), "");
-				
-				String concertDate = new String("soon");
-				try {
-					Date date = new SimpleDateFormat("EEEE MMMM d hh:mm:ss z yyyy", Locale.ENGLISH).parse(parseConcert.get("date").toString());
-					SimpleDateFormat format = new SimpleDateFormat("WW MMMM yyyy", Locale.FRANCE);
-					concertDate = format.format(date); // Sat Jan 02 00:00:00 BOT 2010
-				} catch (java.text.ParseException e) {
-					// TODO Auto-generated catch block
-					Log.d("PARSE ERROR", "error");
-					e.printStackTrace();
-				}
-				
-				concert = new Concert(parseConcert.getObjectId(), artist, place, concertDate, "");
-				
-				concertsList.add(concert);
+			if (arg1 != null) {
+				Log.e("PARSE EXCEPTION", arg1.getMessage());
 			}
-			lvListe = (ListView)view.findViewById(R.id.concertsList);
-			adapter = new ConcertsListAdapter(getActivity().getApplicationContext(), concertsList);
-			
-			lvListe.post(new Runnable() {
-			    public void run() {
-			    	Log.i("SET ADAPTER", "AGENDA FRAGMENT");
-			    	lvListe.setAdapter(adapter);
-			    }
-			});
-		    
-		    lvListe.setOnItemClickListener(new OnItemClickListener() {
-		  	  @Override
-		  	  public void onItemClick(AdapterView<?> parent, View view,
-		  	    int position, long id) {
-		  	    
-		  	    // Insert the fragment by replacing any existing fragment
-		  	    
-		  		String concertID = concertsList.get(position).getId();
-		  	    String artistName = concertsList.get(position).getArtist().getName();
-		  	    String labelName = concertsList.get(position).getArtist().getLabel().getName();
-		  	    String concertPlace = concertsList.get(position).getPlace().getName();
-		  	    String concertDate = concertsList.get(position).getDate();
-		  	    String thumbnail = concertsList.get(position).getArtist().getCoverPicture();
-		  	    
-		  	    Fragment fragment = ConcertDetailsFragment.newInstance(concertID, artistName, labelName, concertPlace, concertDate, thumbnail);
-		  	    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-		        fragmentManager.beginTransaction()
-		                       .replace(R.id.content_frame, fragment)
-		                       .addToBackStack(fragment.getTag())
-		                       .commit();
-
-		        // Update the title
-		        getActivity().getActionBar().setTitle("Concert");
-		        
-		  	  }
-		  	}); 
+			else {
+				//
+				// List
+				//
+				ParseObject parseConcert = new ParseObject("concert");
+				ParseObject parseArtist = new ParseObject("artist");
+				ParseObject parseLabel = new ParseObject("label");
+				ParseObject parsePlace = new ParseObject("place");
+				
+				Artist artist = null;
+				Concert concert = null;
+				Place place = null;
+				Label label = null;
+				
+				for(Iterator<ParseObject> it = arg0.iterator(); it.hasNext();) {
+					parseConcert = it.next();
+					parseArtist = parseConcert.getParseObject("artist");
+					parseLabel = parseArtist.getParseObject("label");
+					parsePlace = parseConcert.getParseObject("place");
+					label = new Label(parseLabel.get("name").toString(), "");
+					artist = new Artist(parseArtist.getObjectId(), parseArtist.get("name").toString(), "", "", label);
+					place = new Place(parsePlace.get("name").toString(), "");
+					
+					String concertDate = new String("soon");
+					try {
+						Date date = new SimpleDateFormat("EEEE MMMM d hh:mm:ss z yyyy", Locale.ENGLISH).parse(parseConcert.get("date").toString());
+						SimpleDateFormat format = new SimpleDateFormat("WW MMMM yyyy", Locale.FRANCE);
+						concertDate = format.format(date); // Sat Jan 02 00:00:00 BOT 2010
+					} catch (java.text.ParseException e) {
+						// TODO Auto-generated catch block
+						Log.d("PARSE ERROR", "error");
+						e.printStackTrace();
+					}
+					
+					concert = new Concert(parseConcert.getObjectId(), artist, place, concertDate, parseConcert.getString("image"));
+					
+					concertsList.add(concert);
+				}
+				lvListe = (ListView)view.findViewById(R.id.concertsList);
+				adapter = new ConcertsListAdapter(getActivity().getApplicationContext(), concertsList);
+				
+				lvListe.post(new Runnable() {
+				    public void run() {
+				    	Log.i("SET ADAPTER", "AGENDA FRAGMENT");
+				    	lvListe.setAdapter(adapter);
+				    }
+				});
+			    
+			    lvListe.setOnItemClickListener(new OnItemClickListener() {
+			  	  @Override
+			  	  public void onItemClick(AdapterView<?> parent, View view,
+			  	    int position, long id) {
+			  	    
+			  	    // Insert the fragment by replacing any existing fragment
+			  	    
+			  		String concertID = concertsList.get(position).getId();
+			  	    String artistName = concertsList.get(position).getArtist().getName();
+			  	    String labelName = concertsList.get(position).getArtist().getLabel().getName();
+			  	    String concertPlace = concertsList.get(position).getPlace().getName();
+			  	    String concertDate = concertsList.get(position).getDate();
+			  	    String thumbnail = concertsList.get(position).getArtist().getCoverPicture();
+			  	    
+			  	    Fragment fragment = ConcertDetailsFragment.newInstance(concertID, artistName, labelName, concertPlace, concertDate, thumbnail);
+			  	    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+			        fragmentManager.beginTransaction()
+			                       .replace(R.id.content_frame, fragment)
+			                       .addToBackStack(fragment.getTag())
+			                       .commit();
+	
+			        // Update the title
+			        getActivity().getActionBar().setTitle("Concert");
+			        
+			  	  }
+			  	});
+			}
 
 		}
 	});

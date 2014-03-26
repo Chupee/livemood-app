@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ import com.example.livemood.adapters.DigsListAdapter;
 import com.example.livemood.models.Dig;
 import com.example.livemood.models.Digger;
 import com.example.livemood.views.LMTextView;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -36,6 +38,7 @@ public class ConcertDetailsFragment extends Fragment {
 	private FlowLayout tagsLayout;
 	private ArrayList<Dig> digsList = new ArrayList<Dig>();
 	private ListView lvListe;
+	private ImageView coverImg;
 	private DigsListAdapter adapter;
 
 	
@@ -44,6 +47,7 @@ public class ConcertDetailsFragment extends Fragment {
     Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.concert_fragment, null);
     tagsLayout = (FlowLayout)view.findViewById(R.id.tagsLayout);
+    coverImg = (ImageView)view.findViewById(R.id.concertCover);
 
     // Concert Id
     concertId = getArguments().getString("concertId");
@@ -96,7 +100,10 @@ public class ConcertDetailsFragment extends Fragment {
 					e.printStackTrace();
 				}
 	        }
-
+	        
+	        ImageLoader imageLoader = ImageLoader.getInstance();
+			imageLoader.displayImage(parseConcert.getString("image"), coverImg);
+	        
 		    // Get reviews/gis from the corresponding concert
 		    ParseQuery<ParseObject> digQuery = ParseQuery.getQuery("dig");
 			digQuery.include("digger");

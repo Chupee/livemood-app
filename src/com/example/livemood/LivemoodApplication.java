@@ -13,8 +13,8 @@ public class LivemoodApplication extends Application {
         super.onCreate();
         
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
-	        .cacheInMemory(false)
-	        .cacheOnDisc(false)
+	        .cacheInMemory(true)
+	        .cacheOnDisc(true)
 	        .build();
         
         // Create global configuration and initialize ImageLoader with this configuration
