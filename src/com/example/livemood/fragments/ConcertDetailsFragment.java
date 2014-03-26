@@ -63,70 +63,57 @@ public class ConcertDetailsFragment extends Fragment {
     // Update action bar
     getActivity().getActionBar().setTitle(TITLE);
     
-    ParseQuery<ParseObject> query = ParseQuery.getQuery("concert");
-	query.include("place");
-	query.include("artist");
-	query.include("artist.label");
-	
-	query.getInBackground(concertId, new GetCallback<ParseObject>() {
-		
-		@SuppressWarnings("unused")
-		@Override
-		public void done(ParseObject arg0, ParseException arg1) {
-			// TODO Auto-generated method stub
-			ParseObject parseConcert = new ParseObject("concert");
-			ParseObject parseArtist = new ParseObject("artist");
+    ParseQuery<ParseObject> query = ParseQuery.getQuery("artist");
+    query.getInBackground(getArguments().getString("artistID"), new GetCallback<ParseObject>() {
+    	
+    	public void done(ParseObject arg0, ParseException arg1) {
+			
+    		ParseObject parseArtist = new ParseObject("artist");
 			JSONArray parseMoodsList = new JSONArray();
-			ParseObject parseLabel = new ParseObject("label");
-			ParseObject parsePlace = new ParseObject("place");
-			
-			Artist artist = null;
-			Place place = null;
-			Label label = null;
-			parseConcert = arg0;
-			parseArtist = parseConcert.getParseObject("artist");
+			parseArtist = arg0;
 			parseMoodsList = parseArtist.getJSONArray("moods");
-			//[{"__type":"Pointer","className":"mood","objectId":"rjvj1sMASP"},{"__type":"Pointer","className":"mood","objectId":"gxQB4dAYkH"}]
-			
-			parseMoodsList = parseArtist.getJSONArray("moods");
-			parseLabel = parseArtist.getParseObject("label");
-			parsePlace = parseConcert.getParseObject("place");
-			label = new Label(parseLabel.get("name").toString(), "");
-			artist = new Artist(parseArtist.getObjectId(), parseArtist.get("name").toString(), "", "", label);
-			place = new Place(parsePlace.get("name").toString(), "");
-			concert = new Concert(parseConcert.getObjectId(), artist, place, parseConcert.get("date").toString(), "");
 			
 			//MOODS MANAGEMENT
-			HashMap<String, String> moodsList = new HashMap<String,String>();
 	        for(int i = 0; i < parseMoodsList.length(); i++){
 				String value;
 				try {
 					value = (String) parseMoodsList.getString(i);
 					LMTextView currentTag = new LMTextView(getActivity());
 					currentTag.setText(value);
-					Log.i("TVTAGS !!!!!!!!!!!!!!!!!", currentTag.toString());
 					currentTag.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
 					currentTag.setBackgroundColor(getResources().getColor(R.color.tag));
 					currentTag.setTextColor(getResources().getColor(R.color.tagText));
 					currentTag.setPadding(4, 7, 4, 7);
 					tagsLayout.addView(currentTag);
-					//artist.getMoodList
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 	        }
-			
-			//TextView
-		    TextView tvArtistName = (TextView) view.findViewById(R.id.artistName);
-		    TextView tvArtistLabel = (TextView) view.findViewById(R.id.artistLabel);
-		    TextView tvDateAndPlace = (TextView) view.findViewById(R.id.dateAndPlace);
-		    tvArtistName.setText(concert.getArtist().getName());
-		    tvArtistLabel.setText(concert.getArtist().getLabel().getName());
-		    tvDateAndPlace.setText(concert.getDate()+" - "+concert.getPlace().getName());
 		}
-		
-	});
+    });
+    
+ 	//TextView
+    
+  	TextView tvArtistName = (TextView) view.findViewById(R.id.artistName);
+  	tvArtistName.setText(getArguments().getString("artistName"));
+  	
+  	TextView tvArtistLabel = (TextView) view.findViewById(R.id.artistLabel);
+  	tvArtistLabel.setText(getArguments().getString("labelName"));
+  	
+  	TextView tvDateAndPlace = (TextView) view.findViewById(R.id.dateAndPlace);
+  	tvDateAndPlace.setText(getArguments().getString("concertDate") + " - " + getArguments().getString("concertPlace"));
+  	
+  	/*String[] tags = getArguments().getStringArray("tags");
+  	for(int i = 0; i < getArguments().getString("moods").length(); i++){
+		LMTextView currentTag = new LMTextView(getActivity());
+		currentTag.setText(tags[i]);
+		currentTag.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
+		currentTag.setBackgroundColor(getResources().getColor(R.color.tag));
+		currentTag.setTextColor(getResources().getColor(R.color.tagText));
+		currentTag.setPadding(4, 7, 4, 7);
+		tagsLayout.addView(currentTag);
+    }*/
 
     return view;
     
@@ -136,10 +123,17 @@ public class ConcertDetailsFragment extends Fragment {
     super.onActivityCreated(savedInstanceState);  
   }
   
-  public static ConcertDetailsFragment newInstance(String concertId2) {
+  public static ConcertDetailsFragment newInstance(String artistID, String artistName, String labelName, String concertPlace, String concertDate, String thumbnail) {
 		ConcertDetailsFragment concertDetailsFragment = new ConcertDetailsFragment();
 	    Bundle args = new Bundle();
-	    args.putString("concertId", concertId2);
+	    
+	    args.putString("artistID", artistID);
+	    args.putString("artistName", artistName);
+	    args.putString("labelName", labelName);
+	    args.putString("concertPlace", concertPlace);
+	    args.putString("concertDate", concertDate);
+	    args.putString("thumbnail", thumbnail);
+	    
 	    concertDetailsFragment.setArguments(args);
 	    return concertDetailsFragment;
   }

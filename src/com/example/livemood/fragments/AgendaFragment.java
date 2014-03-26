@@ -1,8 +1,11 @@
 package com.example.livemood.fragments;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -78,7 +81,23 @@ public class AgendaFragment extends Fragment {
 				label = new Label(parseLabel.get("name").toString(), "");
 				artist = new Artist(parseArtist.getObjectId(), parseArtist.get("name").toString(), "", "", label);
 				place = new Place(parsePlace.get("name").toString(), "");
-				concert = new Concert(parseConcert.getObjectId(), artist, place, parseConcert.get("date").toString(), "");
+				
+				String concertDate = new String("soon");
+				try {
+					Date date = new SimpleDateFormat("EEEE MMMM d hh:mm:ss z yyyy", Locale.ENGLISH).parse(parseConcert.get("date").toString());
+					SimpleDateFormat format = new SimpleDateFormat("WW MMMM yyyy", Locale.FRANCE);
+					concertDate = format.format(date); // Sat Jan 02 00:00:00 BOT 2010
+				} catch (java.text.ParseException e) {
+					// TODO Auto-generated catch block
+					Log.d("PARSE ERROR", "error");
+					e.printStackTrace();
+				}
+				
+				concert = new Concert(parseConcert.getObjectId(), artist, place, concertDate, "");
+				
+				
+
+				
 				concertsList.add(concert);
 			}
 			lvListe = (ListView)view.findViewById(R.id.concertsList);
@@ -95,9 +114,17 @@ public class AgendaFragment extends Fragment {
 		  	  @Override
 		  	  public void onItemClick(AdapterView<?> parent, View view,
 		  	    int position, long id) {
-		  	    String concertId = concertsList.get(position).getId();
+		  	    
 		  	    // Insert the fragment by replacing any existing fragment
-		  	    Fragment fragment = ConcertDetailsFragment.newInstance(concertId);
+		  	    
+		  	    String artistID = concertsList.get(position).getArtist().getId();
+		  	    String artistName = concertsList.get(position).getArtist().getName();
+		  	    String labelName = concertsList.get(position).getArtist().getLabel().getName();
+		  	    String concertPlace = concertsList.get(position).getPlace().getName();
+		  	    String concertDate = concertsList.get(position).getDate();
+		  	    String thumbnail = concertsList.get(position).getArtist().getCoverPicture();
+		  	    
+		  	    Fragment fragment = ConcertDetailsFragment.newInstance(artistID, artistName, labelName, concertPlace, concertDate, thumbnail);
 		  	    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 		        fragmentManager.beginTransaction()
 		                       .replace(R.id.content_frame, fragment)
