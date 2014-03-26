@@ -21,7 +21,7 @@
     
     <ListView
 	         android:id="@+id/artistsList"
-	         android:divider="@color/appBackground"
+	         android:divider="@color/secondaryAppBackground"
 	         android:dividerHeight="@dimen/concert_list_item_space"
 	         android:layout_width="match_parent"
 	         android:layout_height="fill_parent"

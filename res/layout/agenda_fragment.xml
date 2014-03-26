@@ -19,11 +19,11 @@
         	android:textAppearance="?android:attr/textAppearanceLarge" />
     
 	    <ListView
-	         android:id="@+id/concertsList"
-	         android:divider="@color/appBackground"
-	         android:dividerHeight="@dimen/concert_list_item_space"
-	         android:layout_width="match_parent"
-	         android:layout_height="fill_parent"
-	         android:paddingTop="@dimen/concert_list_padding_top"/>
+	        android:id="@+id/concertsList"
+	        android:layout_width="match_parent"
+	        android:layout_height="fill_parent"
+	        android:divider="@color/secondaryAppBackground"
+	        android:dividerHeight="@dimen/concert_list_item_space"
+	        android:paddingTop="@dimen/concert_list_padding_top" />
 	    
 	</RelativeLayout>
