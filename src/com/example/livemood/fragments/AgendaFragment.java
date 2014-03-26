@@ -59,7 +59,7 @@ public class AgendaFragment extends Fragment {
 	query.findInBackground(new FindCallback<ParseObject>() {
 		@Override
 		public void done(List<ParseObject> arg0, ParseException arg1) {
-			Log.d("CONCERT_LIST", arg0.get(0).get("image").toString());
+
 			//
 			// List
 			//
@@ -95,9 +95,6 @@ public class AgendaFragment extends Fragment {
 				
 				concert = new Concert(parseConcert.getObjectId(), artist, place, concertDate, "");
 				
-				
-
-				
 				concertsList.add(concert);
 			}
 			lvListe = (ListView)view.findViewById(R.id.concertsList);
@@ -117,15 +114,14 @@ public class AgendaFragment extends Fragment {
 		  	    
 		  	    // Insert the fragment by replacing any existing fragment
 		  	    
-		  	    String artistID = concertsList.get(position).getArtist().getId();
+		  		String concertID = concertsList.get(position).getId();
 		  	    String artistName = concertsList.get(position).getArtist().getName();
 		  	    String labelName = concertsList.get(position).getArtist().getLabel().getName();
 		  	    String concertPlace = concertsList.get(position).getPlace().getName();
 		  	    String concertDate = concertsList.get(position).getDate();
 		  	    String thumbnail = concertsList.get(position).getArtist().getCoverPicture();
 		  	    
-		  	    //ICI IL FAUT PASSER L'ID DU CONCERT
-		  	    Fragment fragment = ConcertDetailsFragment.newInstance(, artistName, labelName, concertPlace, concertDate, thumbnail);
+		  	    Fragment fragment = ConcertDetailsFragment.newInstance(concertID, artistName, labelName, concertPlace, concertDate, thumbnail);
 		  	    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 		        fragmentManager.beginTransaction()
 		                       .replace(R.id.content_frame, fragment)
