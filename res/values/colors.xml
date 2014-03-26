@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<color name="appBackground">#cccccc</color>
-	<color name="secondaryAppBackground">#e6e6e6</color>
+	<color name="secondaryAppBackground">#eaeaea</color>
 	<color name="navigationText">#ffffff</color>
 	<color name="listItemBackground">#ffffff</color>
 	<color name="listBorderBottom">#b3b3b3</color>
