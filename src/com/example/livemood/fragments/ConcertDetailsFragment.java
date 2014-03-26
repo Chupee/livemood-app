@@ -2,6 +2,8 @@ package com.example.livemood.fragments;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
 import org.apmem.tools.layouts.FlowLayout;
 import org.json.JSONArray;
@@ -14,14 +16,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.livemood.R;
+import com.example.livemood.adapters.DigsListAdapter;
 import com.example.livemood.models.Artist;
 import com.example.livemood.models.Concert;
+import com.example.livemood.models.Dig;
+import com.example.livemood.models.Digger;
 import com.example.livemood.models.Label;
 import com.example.livemood.models.Place;
 import com.example.livemood.views.LMTextView;
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -34,6 +41,9 @@ public class ConcertDetailsFragment extends Fragment {
 	private Concert concert;
 	private FlowLayout tagsLayout;
 	private ArrayList<LMTextView> tvTags = new ArrayList<LMTextView>();
+	private ArrayList<Dig> digsList = new ArrayList<Dig>();
+	private ListView lvListe;
+	private DigsListAdapter adapter;
 
 	
   @Override
@@ -124,6 +134,41 @@ public class ConcertDetailsFragment extends Fragment {
 		    tvArtistName.setText(concert.getArtist().getName());
 		    tvArtistLabel.setText(concert.getArtist().getLabel().getName());
 		    tvDateAndPlace.setText(concert.getDate()+" - "+concert.getPlace().getName());
+		    
+		    ParseQuery<ParseObject> digQuery = ParseQuery.getQuery("dig");
+			digQuery.include("digger");
+			digQuery.whereEqualTo("artist", parseArtist);
+			
+			Log.i("DIG QUERY", "RETRIEVING DIG QUERIE");
+			/*Digger digger = new Digger("Alexis Assadourian");
+    		Dig dig = new Dig(digger, "L’unisson provoque parfois des miracles lorsque les textures s’en mêlent. Rugosité et force de frappe assurées produisent ce tonifiant bijou de simplicité électrique.", 2);
+			digsList.add(dig);
+			lvListe = (ListView)view.findViewById(R.id.digsListView);
+			adapter = new DigsListAdapter(getActivity().getApplicationContext(), digsList);
+			lvListe.setAdapter(adapter);*/
+			
+			digQuery.findInBackground(new FindCallback<ParseObject>() {
+				
+			    public void done(List<ParseObject> digList, ParseException e) {
+			        if (e == null) {
+			        	for(Iterator<ParseObject> it = digList.iterator(); it.hasNext();) {
+			        		ParseObject parseDig = new ParseObject("dig");
+			        		ParseObject parseDigger = new ParseObject("digger");
+			        		parseDig = it.next();
+			        		parseDigger = parseDig.getParseObject("digger");
+			        		Digger digger = new Digger(parseDigger.getString("name"));
+			        		Dig dig = new Dig(digger, parseDig.getString("text"), parseDig.getInt("score"));
+							digsList.add(dig);
+						}
+			        	lvListe = (ListView)view.findViewById(R.id.digsListView);
+						adapter = new DigsListAdapter(getActivity().getApplicationContext(), digsList);
+						lvListe.setAdapter(adapter);
+			            Log.i("DIGS LIST", "Retrieved " + digsList.size() + " scores");
+			        } else {
+			            Log.e("DIGS LIST", "Error: " + e.getMessage());
+			        }
+			    }
+			});
 		}
 		
 	});

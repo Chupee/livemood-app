@@ -1,24 +1,18 @@
 package com.example.livemood.models;
 
-import android.text.format.DateFormat;
 
 public class Dig {
 	
 	private Digger digger;
-	private String title;
-	private String content;
-	private String date;
-	private int hearts;			 // 1, 2 or 3 hearts ?
+	private String text;
+	private int score;			 // 1, 2 or 3 hearts ?
 	
 	
-	public Dig(Digger digger, String title, String content, String date,
-			int hearts) {
+	public Dig(Digger digger, String text, int score) {
 		super();
 		this.digger = digger;
-		this.title = title;
-		this.content = content;
-		this.date = date;
-		this.hearts = hearts;
+		this.text = text;
+		this.score = score;
 	}
 
 	public Digger getDigger() {
@@ -29,36 +23,20 @@ public class Dig {
 		this.digger = digger;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getText() {
+		return text;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setText(String text) {
+		this.text = text;
 	}
 
-	public String getContent() {
-		return content;
+	public int getScore() {
+		return score;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
-	public int getHearts() {
-		return hearts;
-	}
-
-	public void setHearts(int hearts) {
-		this.hearts = hearts;
+	public void setScore(int score) {
+		this.score = score;
 	}
 	
 	

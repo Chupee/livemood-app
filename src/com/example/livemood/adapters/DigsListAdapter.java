@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
 
 import com.example.livemood.R;
 import com.example.livemood.models.Dig;
@@ -63,8 +62,8 @@ public class DigsListAdapter extends BaseAdapter {
 			holder = (ViewHolder) concertView.getTag();
 		}
 
-		holder.diggerName.setText(digsList.get(position).getDigger().getUser().getLogin());
-		holder.digContent.setText(digsList.get(position).getContent());
+		holder.diggerName.setText(digsList.get(position).getDigger().getName());
+		holder.digContent.setText(digsList.get(position).getText());
 		
 
 		return concertView;

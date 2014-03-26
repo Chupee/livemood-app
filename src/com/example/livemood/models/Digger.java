@@ -1,33 +1,22 @@
 package com.example.livemood.models;
 
-import java.util.ArrayList;
 
 public class Digger {
+
+	private String name;
 	
-	private User user;
-	private ArrayList<Dig> digsList; // Digs that the diggers digged.
 	
-	
-	public Digger(User user, ArrayList<Dig> digsList) {
+	public Digger(String name) {
 		super();
-		this.user = user;
-		this.digsList = digsList;
+		this.name = name;
 	}
-
-	public User getUser() {
-		return user;
+	
+	public String getName() {
+		return this.name;
 	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public ArrayList<Dig> getDigsList() {
-		return digsList;
-	}
-
-	public void setDigsList(ArrayList<Dig> digsList) {
-		this.digsList = digsList;
+	
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	
