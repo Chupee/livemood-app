@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/content_frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_padding"
     android:paddingLeft="@dimen/activity_horizontal_padding"
     android:paddingRight="@dimen/activity_horizontal_padding"
     android:paddingTop="@dimen/activity_vertical_padding"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    tools:context=".AgendaActivity">
 
     <com.example.livemood.views.LMTextView
     	    android:id="@+id/ArtistsTitle"
@@ -24,4 +27,4 @@
 	         android:layout_height="fill_parent"
 	         android:paddingTop="@dimen/concert_list_padding_top"/>
 
-</LinearLayout> 
+</RelativeLayout> 

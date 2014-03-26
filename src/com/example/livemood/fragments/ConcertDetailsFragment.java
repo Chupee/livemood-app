@@ -1,10 +1,13 @@
 package com.example.livemood.fragments;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apmem.tools.layouts.FlowLayout;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import android.app.ActionBar.LayoutParams;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -18,6 +21,7 @@ import com.example.livemood.models.Artist;
 import com.example.livemood.models.Concert;
 import com.example.livemood.models.Label;
 import com.example.livemood.models.Place;
+import com.example.livemood.views.LMTextView;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -28,12 +32,16 @@ public class ConcertDetailsFragment extends Fragment {
 	private final String TITLE = "Concert";
 	private String concertId;
 	private Concert concert;
+	private FlowLayout tagsLayout;
+	private ArrayList<LMTextView> tvTags = new ArrayList<LMTextView>();
+
 	
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
     Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.concert_fragment, null);
-    
+    tagsLayout = (FlowLayout)view.findViewById(R.id.tagsLayout);
+
     // Concert Id
     concertId = getArguments().getString("concertId");
     
@@ -94,6 +102,14 @@ public class ConcertDetailsFragment extends Fragment {
 				String value;
 				try {
 					value = (String) parseMoodsList.getString(i);
+					LMTextView currentTag = new LMTextView(getActivity());
+					currentTag.setText(value);
+					Log.i("TVTAGS !!!!!!!!!!!!!!!!!", currentTag.toString());
+					currentTag.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
+					currentTag.setBackgroundColor(getResources().getColor(R.color.tag));
+					currentTag.setTextColor(getResources().getColor(R.color.tagText));
+					currentTag.setPadding(4, 7, 4, 7);
+					tagsLayout.addView(currentTag);
 					//artist.getMoodList
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block

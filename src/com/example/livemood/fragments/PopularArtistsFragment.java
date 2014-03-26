@@ -37,6 +37,7 @@ public class PopularArtistsFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
     Bundle savedInstanceState) {
+	  
     final View view = inflater.inflate(R.layout.popularartists_fragment, null);
 
     //
@@ -71,12 +72,13 @@ public class PopularArtistsFragment extends Fragment {
 				Log.i("ARTIST PARSED", artist.toString());
 				artistsList.add(artist);
 			}
-			Log.i("ARTIST LIST PARSED", artistsList.toString());
+
 			lvListe = (ListView)view.findViewById(R.id.artistsList);
 			adapter = new ArtistsListAdapter(getActivity().getApplicationContext(), artistsList);
-			Log.i("ADAPTER", adapter.getItem(0).toString());
+			
+			Log.i("SET ADAPTER", "POPULAR ARTISTS FRAGMENT");
 		    lvListe.setAdapter(adapter);
-		    Log.i("ADAPTER FROM LV", lvListe.getAdapter().getItem(0).toString());
+		    lvListe.deferNotifyDataSetChanged();
 		    
       	    lvListe.setOnItemClickListener(new OnItemClickListener() {
 		  	  @Override
@@ -100,7 +102,7 @@ public class PopularArtistsFragment extends Fragment {
 	});
     
     
-    
+    Log.i("RETURN VIEW", "POPULAR ARTISTS FRAGMENT");
     
     return view;
   }

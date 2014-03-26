@@ -83,7 +83,13 @@ public class AgendaFragment extends Fragment {
 			}
 			lvListe = (ListView)view.findViewById(R.id.concertsList);
 			adapter = new ConcertsListAdapter(getActivity().getApplicationContext(), concertsList);
-		    lvListe.setAdapter(adapter);
+			
+			lvListe.post(new Runnable() {
+			    public void run() {
+			    	Log.i("SET ADAPTER", "AGENDA FRAGMENT");
+			    	lvListe.setAdapter(adapter);
+			    }
+			});
 		    
 		    lvListe.setOnItemClickListener(new OnItemClickListener() {
 		  	  @Override
@@ -106,6 +112,9 @@ public class AgendaFragment extends Fragment {
 
 		}
 	});
+	
+	Log.i("RETURN VIEW", "AGENDA FRAGMENT");
+	
     return view;
   }
   

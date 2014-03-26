@@ -3,6 +3,7 @@ package com.example.livemood.adapters;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ public class ConcertsListAdapter extends BaseAdapter {
 	LayoutInflater inflater;
 	
 	public ConcertsListAdapter(Context context, ArrayList<Concert> concertsList2){
+		super();
 		this.concertsList = concertsList2;
 		this.inflater = LayoutInflater.from(context);
 		this.context = context;
@@ -80,6 +82,7 @@ public class ConcertsListAdapter extends BaseAdapter {
 			holder.hasBookIcon = (ImageView) concertView.findViewById(R.id.hasBookIcon);
 			
 			concertView.setTag(holder);
+			Log.i("VIEW == NULL",  "CONCERTS LIST ADAPTER");
 		} else {
 			holder = (ViewHolder) concertView.getTag();
 		}

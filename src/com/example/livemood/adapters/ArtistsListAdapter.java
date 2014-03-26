@@ -23,10 +23,11 @@ public class ArtistsListAdapter extends BaseAdapter {
 	LayoutInflater inflater;
 	
 	public ArtistsListAdapter(Context context, ArrayList<Artist> artistsList){
+		super();
 		this.artistsList = artistsList;
 		this.inflater = LayoutInflater.from(context);
 		this.context = context;
-		Log.i("ENTER IN ADAPTER LIST ARTISTS", artistsList.toString());
+		Log.i("ENTER IN ADAPTER LIST ARTISTS", String.valueOf(artistsList.size()));
 	}
 	
 	public int getCount(){
@@ -57,6 +58,7 @@ public class ArtistsListAdapter extends BaseAdapter {
 	}
 	
 	public View getView(int position, View view, ViewGroup parent) {
+		Log.i("ENTER IN GET VIEW", String.valueOf(position));
 		ViewHolder holder = null;
 
 		if (view == null) {
@@ -74,6 +76,8 @@ public class ArtistsListAdapter extends BaseAdapter {
 			imageLoader.displayImage(imageUrl, holder.artistImage);
 			
 			view.setTag(holder);
+			
+			Log.i("VIEW == NULL",  "ARTIST LIST ADAPTER");
 		} else {
 			holder = (ViewHolder) view.getTag();
 		}
